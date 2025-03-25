@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { LoginPage } from "./pages/LoginPage";
+import { User } from "./types/User";
+import { App } from "./elements";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const TechTeam = () => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentPage, setCurrentPage] = useState<String>("login");
+  const [registrationSuccess, setRegistrationSuccess] = useState<
+    boolean | undefined
+  >(false);
 
-export default App;
+  const navigateTo = (page: string) => {
+    setCurrentPage(page);
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "login":
+        return (
+          <LoginPage
+            setCurrentUser={setCurrentUser}
+            navigateTo={navigateTo}
+            registrationSuccess={registrationSuccess}
+            setRegistrationSuccess={setRegistrationSuccess}
+          />
+        );
+      case "register":
+        return <div>register page</div>;
+      case "main":
+        return <div>mainpage</div>;
+      default:
+        return <div>default page</div>;
+    }
+  };
+
+  return <App>{renderPage()}</App>;
+};
+
+export default TechTeam;
