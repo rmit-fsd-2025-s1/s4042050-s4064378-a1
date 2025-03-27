@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { User } from "../types/User";
 import {
   AuthContainer,
@@ -10,6 +10,10 @@ import {
   SuccessMessage,
 } from "./elements";
 import { SubmitButton } from "../components/Buttons/SubmitButton";
+import ReCAPTCHA from "react-google-recaptcha";
+
+const REACT_APP_SITE_KEY = "6LfaTQErAAAAAM4oamNji2SSm2uVi3-gUk1ul29S";
+const SITE_SECRET = "6LfaTQErAAAAACODMgjJzjm-jubUGIz8S13k9m2H";
 
 export const LoginPage = ({
   setCurrentUser,
@@ -27,6 +31,7 @@ export const LoginPage = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const recaptcha = useRef<ReCAPTCHA>(null);
 
   React.useEffect(() => {
     if (registrationSuccess && setRegistrationSuccess) {
@@ -39,6 +44,18 @@ export const LoginPage = ({
 
   const handleLogin = (e: any) => {
     e.preventDefault();
+
+    // Check if recaptcha ref exists and get the value
+    if (!recaptcha.current) {
+      alert("CAPTCHA not loaded");
+      return;
+    }
+    const captchaValue = recaptcha.current.getValue();
+
+    if (!captchaValue) {
+      alert("Please verify the reCAPTCHA!");
+      return;
+    }
   };
 
   return (
@@ -54,8 +71,6 @@ export const LoginPage = ({
         )}
 
         <form onSubmit={handleLogin}>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-
           <FormGroup>
             <label htmlFor="email">Email</label>
             <input
@@ -77,8 +92,9 @@ export const LoginPage = ({
               placeholder="Enter your password"
             />
           </FormGroup>
-
+          <ReCAPTCHA ref={recaptcha} sitekey={REACT_APP_SITE_KEY} />
           <SubmitButton>Login</SubmitButton>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
 
           <AuthFooter>
             Don't have an account?{" "}
