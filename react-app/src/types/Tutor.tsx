@@ -3,5 +3,9 @@ export interface Tutor {
     email: string,
     name: string,
     availability: "full-time" | "part-time",
-    comment?: string
+    course: string,
+    skills: string[],
+    credentials: string,
+    comment?: string,
+    selected?: boolean
 }
