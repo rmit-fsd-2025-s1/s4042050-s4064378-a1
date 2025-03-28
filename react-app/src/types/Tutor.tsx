@@ -8,4 +8,5 @@ export interface Tutor {
     credentials: string,
     comment?: string,
     selected?: boolean
+    rank?: number
 }
