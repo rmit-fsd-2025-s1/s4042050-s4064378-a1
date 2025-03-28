@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BaseButton } from "./BaseButton";
 
-export const SubmitButtonWrapper = styled(BaseButton)`
+export const PrimaryButtonWrapper = styled(BaseButton)`
   width: 100%;
   padding: 10px;
   background-color: rgb(0, 94, 255);

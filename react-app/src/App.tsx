@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { LoginPage } from "./pages/LoginPage";
 import { User } from "./types/User";
 import { App } from "./elements";
+import { RegisterPage } from "./pages/RegisterPage";
 
 const TechTeam = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -26,7 +27,12 @@ const TechTeam = () => {
           />
         );
       case "register":
-        return <div>register page</div>;
+        return (
+          <RegisterPage
+            navigateTo={navigateTo}
+            setRegistrationSuccess={setRegistrationSuccess}
+          />
+        );
       case "main":
         return <div>mainpage</div>;
       default:

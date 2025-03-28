@@ -9,8 +9,16 @@ import {
   Link,
   SuccessMessage,
 } from "./elements";
-import { SubmitButton } from "../components/Buttons/SubmitButton";
+import { PrimaryButton } from "../components/Buttons/PrimaryButton";
 import ReCAPTCHA from "react-google-recaptcha";
+import { validateRegex } from "../util/validateRegex";
+import {
+  CHECK_EMAIL_REGEX,
+  DONT_HAVE_ACCOUNT,
+  LOGIN,
+  REGISTER_SUCCESS,
+  TECH_TEAM,
+} from "./constants";
 
 const REACT_APP_SITE_KEY = "6LfaTQErAAAAAM4oamNji2SSm2uVi3-gUk1ul29S";
 const SITE_SECRET = "6LfaTQErAAAAACODMgjJzjm-jubUGIz8S13k9m2H";
@@ -45,29 +53,39 @@ export const LoginPage = ({
   const handleLogin = (e: any) => {
     e.preventDefault();
 
+    if (!validateRegex(email, CHECK_EMAIL_REGEX)) {
+      setError("Enter a valid email address");
+      return;
+    }
+
+    if (password === "") {
+      setError("Enter the password");
+      return;
+    }
+
     // Check if recaptcha ref exists and get the value
     if (!recaptcha.current) {
-      alert("CAPTCHA not loaded");
+      setError("CAPTCHA not loaded");
       return;
     }
     const captchaValue = recaptcha.current.getValue();
 
     if (!captchaValue) {
-      alert("Please verify the reCAPTCHA!");
+      setError("Please verify the reCAPTCHA!");
       return;
     }
+
+    setError("");
   };
 
   return (
     <AuthWrapper>
       <AuthContainer>
-        <h1>Tech Team</h1>
-        <h2>Login</h2>
+        <h1>{TECH_TEAM}</h1>
+        <h2>{LOGIN}</h2>
 
         {registrationSuccess && (
-          <SuccessMessage>
-            Registration successful! You can now login.
-          </SuccessMessage>
+          <SuccessMessage>{REGISTER_SUCCESS}</SuccessMessage>
         )}
 
         <form onSubmit={handleLogin}>
@@ -93,11 +111,11 @@ export const LoginPage = ({
             />
           </FormGroup>
           <ReCAPTCHA ref={recaptcha} sitekey={REACT_APP_SITE_KEY} />
-          <SubmitButton>Login</SubmitButton>
+          <PrimaryButton>Login</PrimaryButton>
           {error && <ErrorMessage>{error}</ErrorMessage>}
 
           <AuthFooter>
-            Don't have an account?{" "}
+            {DONT_HAVE_ACCOUNT}{" "}
             <Link onClick={() => navigateTo("register")}>Register</Link>
           </AuthFooter>
         </form>

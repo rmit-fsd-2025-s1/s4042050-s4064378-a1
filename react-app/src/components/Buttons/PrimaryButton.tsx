@@ -1,6 +1,6 @@
-import { SubmitButtonWrapper } from "./elements";
+import { PrimaryButtonWrapper } from "./elements";
 
-export const SubmitButton = ({
+export const PrimaryButton = ({
   children,
   type,
   ...props
@@ -9,8 +9,8 @@ export const SubmitButton = ({
   HTMLButtonElement
 >) => {
   return (
-    <SubmitButtonWrapper type="submit" {...props}>
+    <PrimaryButtonWrapper type="submit" {...props}>
       {children}
-    </SubmitButtonWrapper>
+    </PrimaryButtonWrapper>
   );
 };
