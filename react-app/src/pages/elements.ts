@@ -49,12 +49,12 @@ export const AuthFooter = styled.div`
 `;
 
 export const FormGroup = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   margin-right: 20px;
 
   & input {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
@@ -62,7 +62,6 @@ export const FormGroup = styled.div`
 
   & label {
     display: block;
-    margin-bottom: 5px;
     font-weight: 500;
   }
 `;
@@ -82,9 +81,8 @@ export const StyledLabel = styled.label`
 
 export const StyledSelect = styled.select`
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
+  padding: 5px;
+  border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
   appearance: none;
