@@ -2,7 +2,6 @@ import { Tutor } from "../types/Tutor";
 
 const LOCAL_STORAGE_KEY = "tutors";
 
-
 export const loadTutors = (): Tutor[] => {
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -21,3 +20,5 @@ export const loadTutors = (): Tutor[] => {
     return [];
   }
 };
+
+export const saveApplicantsToLocalStorage = (updatedList: Tutor[]) => {};
