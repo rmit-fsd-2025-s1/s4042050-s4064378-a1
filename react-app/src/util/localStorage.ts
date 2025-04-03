@@ -6,7 +6,9 @@ const LOCAL_STORAGE_KEY = "tutors";
 export const loadTutors = (): Tutor[] => {
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    
     if (!raw) return [];
+    console.log("Load users called")
 
     const data = JSON.parse(raw);
 
@@ -21,3 +23,14 @@ export const loadTutors = (): Tutor[] => {
     return [];
   }
 };
+
+
+export const saveTutors = (applicants: Tutor[]): void => {
+    try {
+      const serialized = JSON.stringify(applicants);
+      localStorage.setItem(LOCAL_STORAGE_KEY, serialized);
+      console.log("Tutor saved to localStorage.");
+    } catch (error) {
+      console.error("Error saving Tutor to localStorage:", error);
+    }
+  };
