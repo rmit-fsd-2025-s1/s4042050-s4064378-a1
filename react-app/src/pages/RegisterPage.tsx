@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Role } from "../types/User";
 import {
   AuthContainer,
   AuthFooter,
@@ -13,6 +12,7 @@ import {
 import { PrimaryButton } from "../components/Buttons/PrimaryButton";
 import { HAVE_ACCOUNT, LOGIN, REGISTER, TECH_TEAM } from "./constants";
 import { addUser, isEmailExist } from "../util";
+import { Role } from "../types/User";
 
 // Register Page Component
 export const RegisterPage = ({
@@ -24,16 +24,19 @@ export const RegisterPage = ({
     React.SetStateAction<boolean | undefined>
   >;
 }) => {
-  const [role, setRole] = useState<Role>("tutor" as unknown as Role);
+  const [role, setRole] = useState<Role>("tutor");
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleRegister = (e: any) => {
     e.preventDefault();
 
     // Basic validation
-    if (!email || !password) {
+    if (!email || !password || !confirmPassword) {
       setError("Please fill in all fields");
       return;
     }
@@ -43,9 +46,11 @@ export const RegisterPage = ({
 
     if (emailExists) {
       setError("The email already exists");
+    } else if (confirmPassword !== password) {
+      setError("Passwords should be same");
     } else {
       // In a real app, you would call an API to register the user
-      addUser({ email, role, password });
+      addUser({ email, role, password, firstName, lastName });
       setRegistrationSuccess(true);
       navigateTo("login");
     }
@@ -69,6 +74,26 @@ export const RegisterPage = ({
             />
           </FormGroup>
           <FormGroup>
+            <label htmlFor="first-name">First Name</label>
+            <input
+              type="text"
+              id="first-name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="Enter your first name"
+            />
+          </FormGroup>
+          <FormGroup>
+            <label htmlFor="last-name">Last Name</label>
+            <input
+              type="text"
+              id="last-name"
+              value={firstName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Enter your last name"
+            />
+          </FormGroup>
+          <FormGroup>
             <StyledLabel htmlFor="role">Role</StyledLabel>
             <StyledSelect
               id="role"
@@ -82,13 +107,24 @@ export const RegisterPage = ({
           </FormGroup>
 
           <FormGroup>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">New Password</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Choose a password"
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <label htmlFor="password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Re-enter the password"
             />
           </FormGroup>
 

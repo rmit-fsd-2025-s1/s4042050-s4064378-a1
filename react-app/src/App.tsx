@@ -3,6 +3,8 @@ import { LoginPage } from "./pages/LoginPage";
 import { User } from "./types/User";
 import { App } from "./elements";
 import { RegisterPage } from "./pages/RegisterPage";
+import TutorDashboard from "./pages/Tutor/TutorDashboard";
+import CourseForm from "./pages/Tutor/CourseForm";
 
 const TechTeam = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -32,6 +34,8 @@ const TechTeam = () => {
             navigateTo={navigateTo}
             setRegistrationSuccess={setRegistrationSuccess}
           />
+          // <TutorDashboard />
+          // <CourseForm onSubmit={() => {}} />
         );
       case "main":
         return <div>mainpage</div>;
