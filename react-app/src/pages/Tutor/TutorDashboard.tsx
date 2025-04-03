@@ -18,6 +18,9 @@ const TutorDashboard: React.FC = () => {
     const fetchTutorProfile = async () => {
       // In a real application, this would be an API call
       setTutorProfile({
+        id: "t1",
+        name: "Mock Tutor", 
+        course: "COSC1234", 
         email: "abc@gmail.com",
         availability: "part-time",
         skills: ["JavaScript", "React", "Node.js"],
