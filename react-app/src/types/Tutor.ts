@@ -1,6 +1,9 @@
 import { User } from "./User";
 
 export interface Tutor extends User {
+  id:string
+  name:string,
+  course:string,
   availability: "full-time" | "part-time";
   skills: string[];
   credentials: {
