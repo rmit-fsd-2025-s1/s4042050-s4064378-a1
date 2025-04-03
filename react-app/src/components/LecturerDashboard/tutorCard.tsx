@@ -30,8 +30,6 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate }) => {
     onUpdate(updatedTutor);
   };
 
-  return <></>;
-};
 
 return (
   <div className="applicant-card border rounded-lg shadow-md p-4 mb-4">
@@ -39,7 +37,6 @@ return (
     <p><strong>Email:</strong> {tutor.email}</p>
     <p><strong>Course:</strong> {tutor.course}</p>
     <p><strong>Availability:</strong> {tutor.availability}</p>
-    <p><strong>Credentials:</strong> {tutor.credentials}</p>
     <p><strong>Skills:</strong> {tutor.skills.join(", ")}</p>
 
     <div className="mt-4">
