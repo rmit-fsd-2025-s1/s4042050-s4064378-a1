@@ -3,9 +3,9 @@ import {Tutor} from "../../types/Tutor";
 import {SortOption} from "../../types/sortTypes"
 import {saveTutors} from "../../util/addTutors"
 import {loadTutors} from "../../util/localStorage"
-import TutorList from "./tutorsList"
-import SearchBar from "./searchBar"
-import ChartsPanel from "./ChartsPanel"
+import TutorList from "./tutorList"
+import SearchSortBar from "./searchSortBar"
+
 
 export const LecturerPage = () => {
     const [tutors, setTutors] = useState<Tutor[]>([])
@@ -28,7 +28,7 @@ export const LecturerPage = () => {
   //  <ChartsPanel applicants={filteredTutors} />
 return (
     <div className="lecturer-dashboard">
-      <SearchBar 
+      <SearchSortBar 
         applicants={tutors}
         onFilteredListChange={setFilteredTutors}
       />
