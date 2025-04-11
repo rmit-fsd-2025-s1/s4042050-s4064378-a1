@@ -1,6 +1,6 @@
 import React from "react";
 import { validateField } from "../../util/validation";
-import { RequiredIndicator } from "./elements";
+import { RequiredIndicator } from "./element";
 
 interface FormFieldProps {
   id: string;

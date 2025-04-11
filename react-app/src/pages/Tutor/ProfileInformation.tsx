@@ -14,7 +14,7 @@ import {
   SkillList,
   SkillTag,
   SubmitButton,
-} from "./elements";
+} from "./element";
 
 interface ProfileInformationProps {
   profile: Tutor;

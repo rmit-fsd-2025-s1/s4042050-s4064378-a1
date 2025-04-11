@@ -1,9 +1,9 @@
 import { User } from "./User";
 
 export interface Tutor extends User {
-  id:string
-  name:string,
-  course:string,
+  id: string;
+  // name:string, // use first name and last name from User parent object
+  course: string;
   availability: "full-time" | "part-time";
   skills: string[];
   credentials: {
@@ -12,8 +12,8 @@ export interface Tutor extends User {
     year: number;
   }[];
   comment?: string;
-  selected?: boolean;
-  rank?: number;
+  selected?: boolean; // should be removed goes into appliedroles-> status
+  rank?: number; // should goes into applied roles
   appliedRoles?: TutorRole[];
 }
 
@@ -32,4 +32,5 @@ export interface TutorRole {
   semester: string;
   role: "tutor" | "lab-assistant";
   status: "accepted" | "rejected" | "pending";
+  rank?: number;
 }

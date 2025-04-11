@@ -4,7 +4,8 @@ import { Course, Tutor, TutorRole } from "../../types/Tutor";
 import TutorApplication from "./TutorApplication";
 import PreviousRoles from "./TutorPreviousRoles";
 import ProfileInformation from "./ProfileInformation";
-import { TutorDashboardWrapper } from "./elements";
+import { TutorDashboardWrapper } from "./element";
+import { mockCourses } from "../../mockData/mockData";
 
 const TutorDashboard: React.FC = () => {
   const [tutorProfile, setTutorProfile] = useState<Tutor | null>(null);
@@ -19,8 +20,8 @@ const TutorDashboard: React.FC = () => {
       // In a real application, this would be an API call
       setTutorProfile({
         id: "t1",
-        name: "Mock Tutor", 
-        course: "COSC1234", 
+        // name: "Mock Tutor",
+        course: "COSC1234",
         email: "abc@gmail.com",
         availability: "part-time",
         skills: ["JavaScript", "React", "Node.js"],
@@ -40,6 +41,7 @@ const TutorDashboard: React.FC = () => {
             semester: "Fall 2024",
             role: "tutor",
             status: "pending",
+            rank: 0,
           },
         ],
         firstName: "",
@@ -52,32 +54,7 @@ const TutorDashboard: React.FC = () => {
     // Mock API call to fetch available courses
     const fetchCourses = async () => {
       // In a real application, this would be an API call
-      setCourses([
-        {
-          id: "1",
-          code: "COSC1234",
-          name: "Web development",
-          semester: "Spring 2024",
-        },
-        {
-          id: "2",
-          code: "COSC2345",
-          name: "Full stack development",
-          semester: "Spring 2024",
-        },
-        {
-          id: "3",
-          code: "COSC3456",
-          name: "Artificial intelligence",
-          semester: "Spring 2024",
-        },
-        {
-          id: "4",
-          code: "COSC4567",
-          name: "Machine learning",
-          semester: "Spring 2024",
-        },
-      ]);
+      setCourses(mockCourses);
     };
 
     fetchTutorProfile();

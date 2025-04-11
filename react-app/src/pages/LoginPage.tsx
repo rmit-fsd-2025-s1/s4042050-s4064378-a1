@@ -8,7 +8,7 @@ import {
   FormGroup,
   Link,
   SuccessMessage,
-} from "./elements";
+} from "./element";
 import { PrimaryButton } from "../components/Buttons/PrimaryButton";
 import ReCAPTCHA from "react-google-recaptcha";
 import { validateRegex } from "../util/validateRegex";
@@ -18,7 +18,8 @@ import {
   LOGIN,
   REGISTER_SUCCESS,
   TECH_TEAM,
-} from "./constants";
+} from "./constant";
+import { userValidation } from "../util/userValidation";
 
 const REACT_APP_SITE_KEY = "6LfaTQErAAAAAM4oamNji2SSm2uVi3-gUk1ul29S";
 const SITE_SECRET = "6LfaTQErAAAAACODMgjJzjm-jubUGIz8S13k9m2H";
@@ -76,6 +77,19 @@ export const LoginPage = ({
     }
 
     setError("");
+
+    const user = userValidation({ email, password });
+    if (user) {
+      setCurrentUser(user);
+      if (user.role === "lecturer") {
+        navigateTo("lecturer");
+      } else {
+        navigateTo("tutor");
+      }
+      return;
+    }
+
+    setError("User Not Found");
   };
 
   return (

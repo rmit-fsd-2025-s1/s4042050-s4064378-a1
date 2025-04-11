@@ -8,18 +8,19 @@ import {
   Link,
   StyledLabel,
   StyledSelect,
-} from "./elements";
+} from "./element";
 import { PrimaryButton } from "../components/Buttons/PrimaryButton";
-import { HAVE_ACCOUNT, LOGIN, REGISTER, TECH_TEAM } from "./constants";
+import { HAVE_ACCOUNT, LOGIN, REGISTER, TECH_TEAM } from "./constant";
 import { addUser, isEmailExist } from "../util";
 import { Role } from "../types/User";
+import { Page } from "../App";
 
 // Register Page Component
 export const RegisterPage = ({
   navigateTo,
   setRegistrationSuccess,
 }: {
-  navigateTo: (page: string) => void;
+  navigateTo: (page: Page) => void;
   setRegistrationSuccess: React.Dispatch<
     React.SetStateAction<boolean | undefined>
   >;

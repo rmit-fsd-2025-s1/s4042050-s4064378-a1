@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormField, { CourseFormProps } from "./FormField";
 import { capitalizeName, validateCourseCode } from "../../util/validation";
-import { CourseFormWrapper } from "./elements";
+import { CourseFormWrapper } from "./element";
 
 const CourseForm: React.FC<CourseFormProps> = ({ onSubmit }) => {
   const [courseCode, setCourseCode] = useState<string>("");
