@@ -4,16 +4,18 @@ import { User } from "./types/User";
 import { App } from "./elements";
 import { RegisterPage } from "./pages/RegisterPage";
 import TutorDashboard from "./pages/Tutor/TutorDashboard";
-import CourseForm from "./pages/Tutor/CourseForm";
+import { LecturerPage } from "./components/LecturerDashboard";
+
+export type Page = "login" | "register" | "tutor" | "lecturer";
 
 const TechTeam = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [currentPage, setCurrentPage] = useState<String>("login");
+  const [currentPage, setCurrentPage] = useState<Page>("login");
   const [registrationSuccess, setRegistrationSuccess] = useState<
     boolean | undefined
   >(false);
 
-  const navigateTo = (page: string) => {
+  const navigateTo = (page: Page) => {
     setCurrentPage(page);
   };
 
@@ -27,6 +29,7 @@ const TechTeam = () => {
             registrationSuccess={registrationSuccess}
             setRegistrationSuccess={setRegistrationSuccess}
           />
+          // <LecturerPage />
         );
       case "register":
         return (
@@ -37,8 +40,10 @@ const TechTeam = () => {
           // <TutorDashboard />
           // <CourseForm onSubmit={() => {}} />
         );
-      case "main":
-        return <div>mainpage</div>;
+      case "tutor":
+        return <TutorDashboard />;
+      case "lecturer":
+        return <LecturerPage />;
       default:
         return <div>default page</div>;
     }

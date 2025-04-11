@@ -8,8 +8,8 @@ import {
   SubmitButton,
   TutorApplicationHeading,
   TutorApplicationSubHeading,
-} from "./elements";
-import { ErrorMessage } from "../elements";
+} from "./element";
+import { ErrorMessage } from "../element";
 
 interface TutorApplicationProps {
   courses: Course[];

@@ -1,4 +1,4 @@
-import { PrimaryButtonWrapper } from "./elements";
+import { PrimaryButtonWrapper } from "./element";
 
 export const PrimaryButton = ({
   children,

@@ -4,7 +4,7 @@ import { Course, Tutor, TutorRole } from "../../types/Tutor";
 import TutorApplication from "./TutorApplication";
 import PreviousRoles from "./TutorPreviousRoles";
 import ProfileInformation from "./ProfileInformation";
-import { TutorDashboardWrapper } from "./elements";
+import { TutorDashboardWrapper } from "./element";
 
 const TutorDashboard: React.FC = () => {
   const [tutorProfile, setTutorProfile] = useState<Tutor | null>(null);
@@ -19,8 +19,8 @@ const TutorDashboard: React.FC = () => {
       // In a real application, this would be an API call
       setTutorProfile({
         id: "t1",
-        name: "Mock Tutor", 
-        course: "COSC1234", 
+        name: "Mock Tutor",
+        course: "COSC1234",
         email: "abc@gmail.com",
         availability: "part-time",
         skills: ["JavaScript", "React", "Node.js"],

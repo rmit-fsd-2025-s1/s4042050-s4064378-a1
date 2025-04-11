@@ -1,7 +1,7 @@
 // src/components/PreviousRoles.tsx
 import React from "react";
 import { TutorRole } from "../../types/Tutor";
-import { PreviousRolesHeading, RolesTable } from "./elements";
+import { PreviousRolesHeading, RolesTable } from "./element";
 
 interface PreviousRolesProps {
   roles: TutorRole[];
