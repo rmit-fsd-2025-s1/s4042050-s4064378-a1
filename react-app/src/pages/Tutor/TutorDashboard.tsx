@@ -19,7 +19,7 @@ const TutorDashboard: React.FC = () => {
       // In a real application, this would be an API call
       setTutorProfile({
         id: "t1",
-        name: "Mock Tutor",
+        // name: "Mock Tutor",
         course: "COSC1234",
         email: "abc@gmail.com",
         availability: "part-time",
@@ -40,6 +40,7 @@ const TutorDashboard: React.FC = () => {
             semester: "Fall 2024",
             role: "tutor",
             status: "pending",
+            rank: 0,
           },
         ],
         firstName: "",

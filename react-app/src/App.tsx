@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LoginPage } from "./pages/LoginPage";
 import { User } from "./types/User";
 import { App } from "./elements";
 import { RegisterPage } from "./pages/RegisterPage";
 import TutorDashboard from "./pages/Tutor/TutorDashboard";
 import { LecturerPage } from "./components/LecturerDashboard";
+import { addMockUsersToLocalStorage } from "./util/addMockUsersToLocalStorage";
 
 export type Page = "login" | "register" | "tutor" | "lecturer";
 
@@ -18,6 +19,10 @@ const TechTeam = () => {
   const navigateTo = (page: Page) => {
     setCurrentPage(page);
   };
+
+  useEffect(() => {
+    addMockUsersToLocalStorage();
+  }, []);
 
   const renderPage = () => {
     switch (currentPage) {

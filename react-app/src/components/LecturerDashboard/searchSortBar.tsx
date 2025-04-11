@@ -7,7 +7,10 @@ interface Props {
   onFilteredListChange: (filtered: Tutor[]) => void;
 }
 
-const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) => {
+const SearchSortBar: React.FC<Props> = ({
+  applicants,
+  onFilteredListChange,
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("course");
 
@@ -16,9 +19,15 @@ const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) =>
 
     // Search
     if (searchQuery.trim() !== "") {
-      updatedList = updatedList.filter((applicant) =>
-        applicant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        applicant.course.toLowerCase().includes(searchQuery.toLowerCase())
+      updatedList = updatedList.filter(
+        (applicant) =>
+          applicant.firstName
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          applicant.lastName
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          applicant.course.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
