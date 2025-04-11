@@ -5,6 +5,7 @@ import {saveTutors} from "../../util/addTutors"
 import {loadTutors} from "../../util/localStorage"
 import TutorList from "./tutorList"
 import SearchSortBar from "./searchSortBar"
+import "./styles/index.css"
 
 
 export const LecturerPage = () => {
@@ -28,12 +29,11 @@ export const LecturerPage = () => {
   //  <ChartsPanel applicants={filteredTutors} />
 return (
     <div className="lecturer-dashboard">
-      <SearchSortBar 
-        applicants={tutors}
-        onFilteredListChange={setFilteredTutors}
-      />
-      <TutorList tutors={filteredTutors} />
-     
-    </div>
+    <SearchSortBar 
+      applicants={tutors}
+      onFilteredListChange={setFilteredTutors}
+    />
+    <TutorList tutors={filteredTutors} />
+  </div>
   );
 };
