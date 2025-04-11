@@ -1,4 +1,4 @@
-import { Role, User } from "../types/User";
+import { User } from "../types/User";
 import { Tutor } from "../types/Tutor";
 
 export const mockUsers: User[] = [
@@ -28,6 +28,13 @@ export const mockUsers: User[] = [
     lastName: "Kumar",
     email: "arun.k@example.com",
     password: "abcd",
+    role: "tutor",
+  },
+  {
+    firstName: "abc",
+    lastName: "def",
+    email: "abc@gmail.com",
+    password: "123",
     role: "tutor",
   },
 ];
@@ -89,5 +96,32 @@ export const mockTutors: Tutor[] = [
       },
     ],
     selected: false,
+  },
+];
+
+export const mockCourses = [
+  {
+    id: "1",
+    code: "COSC1234",
+    name: "Web development",
+    semester: "Spring 2024",
+  },
+  {
+    id: "2",
+    code: "COSC2345",
+    name: "Full stack development",
+    semester: "Spring 2024",
+  },
+  {
+    id: "3",
+    code: "COSC3456",
+    name: "Artificial intelligence",
+    semester: "Spring 2024",
+  },
+  {
+    id: "4",
+    code: "COSC4567",
+    name: "Machine learning",
+    semester: "Spring 2024",
   },
 ];
