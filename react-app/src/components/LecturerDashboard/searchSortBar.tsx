@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Tutor } from "../../types/Tutor";
 import { SortOption } from "../../types/sortTypes";
+import "./styles/searchSortBar.css"
 
 interface Props {
   applicants: Tutor[];
@@ -33,17 +34,17 @@ const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) =>
   }, [searchQuery, sortOption, applicants]);
 
   return (
-    <div className="search-sort-bar flex flex-col md:flex-row items-center justify-between gap-4 p-4 border-b border-gray-300 mb-6">
+    <div className="search-sort-bar">
       <input
         type="text"
         placeholder="Search by name or course..."
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/2"
+        className="search-input"
       />
 
       <select
         onChange={(e) => setSortOption(e.target.value as SortOption)}
-        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
+        className="sort-select"
       >
         <option value="course">Sort by Course</option>
         <option value="availability">Sort by Availability</option>
