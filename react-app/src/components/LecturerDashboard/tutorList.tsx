@@ -1,6 +1,7 @@
 import React, { useState ,useEffect} from "react";
 import { Tutor } from "../../types/Tutor";
 import TutorCard from "./tutorCard";
+import "./styles/tutorList.css"
 
 interface Props {
     tutors: Tutor[];
@@ -35,13 +36,9 @@ if (localTutors.length === 0) {
   
   
   return (
-    <div className="applicant-list">
+    <div className="tutor-list">
       {localTutors.map((tutor) => (
-        <TutorCard
-          key={tutor.id}
-          tutor={tutor}
-          onUpdate={handleUpdate}
-        />
+        <TutorCard key={tutor.id} tutor={tutor} onUpdate={handleUpdate} />
       ))}
     </div>
   );
