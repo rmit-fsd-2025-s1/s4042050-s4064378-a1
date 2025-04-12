@@ -4,7 +4,6 @@ import {
   AuthContainer,
   AuthFooter,
   AuthWrapper,
-  ErrorMessage,
   FormGroup,
   Link,
   SuccessMessage,
@@ -20,6 +19,7 @@ import {
   TECH_TEAM,
 } from "./constant";
 import { userValidation } from "../util/userValidation";
+import { ErrorMessage } from "../components/ActivityStatus/ErrorMessage";
 
 const REACT_APP_SITE_KEY = "6LfaTQErAAAAAM4oamNji2SSm2uVi3-gUk1ul29S";
 const SITE_SECRET = "6LfaTQErAAAAACODMgjJzjm-jubUGIz8S13k9m2H";
@@ -126,7 +126,7 @@ export const LoginPage = ({
           </FormGroup>
           <ReCAPTCHA ref={recaptcha} sitekey={REACT_APP_SITE_KEY} />
           <PrimaryButton>Login</PrimaryButton>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
+          {error && <ErrorMessage message={error} />}
 
           <AuthFooter>
             {DONT_HAVE_ACCOUNT}{" "}

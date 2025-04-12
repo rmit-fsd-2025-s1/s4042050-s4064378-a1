@@ -9,7 +9,7 @@ import {
   TutorApplicationHeading,
   TutorApplicationSubHeading,
 } from "./element";
-import { ErrorMessage } from "../element";
+import { ErrorMessage } from "../../components/ActivityStatus/ErrorMessage";
 
 interface TutorApplicationProps {
   courses: Course[];
@@ -95,7 +95,7 @@ const TutorApplication: React.FC<TutorApplicationProps> = ({
           </RadioGroup>
         </FormGroupWrapper>
 
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {error && <ErrorMessage message={error} />}
 
         <SubmitButton type="submit">Apply</SubmitButton>
       </form>

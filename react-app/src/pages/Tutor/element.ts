@@ -197,8 +197,6 @@ export const SubmitButton = styled(PrimaryButton)`
   }
 `;
 
-export const ErrorMessage = styled.div``;
-
 export const CoursesList = styled.ul`
   list-style: none;
 
@@ -216,20 +214,6 @@ export const TutorDashboardWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-
-  header {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 20px;
-    border-radius: var(--border-radius);
-    margin-bottom: 20px;
-    box-shadow: var(--box-shadow);
-
-    h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-  }
 
   nav {
     margin-bottom: 20px;

@@ -6,6 +6,7 @@ import PreviousRoles from "./TutorPreviousRoles";
 import ProfileInformation from "./ProfileInformation";
 import { TutorDashboardWrapper } from "./element";
 import { mockCourses } from "../../mockData/mockData";
+import { Dashboard } from "../DashBoard";
 
 const TutorDashboard: React.FC = () => {
   const [tutorProfile, setTutorProfile] = useState<Tutor | null>(null);
@@ -96,9 +97,7 @@ const TutorDashboard: React.FC = () => {
 
   return (
     <TutorDashboardWrapper>
-      <header>
-        <h1>Tutor Dashboard</h1>
-      </header>
+      <Dashboard header="Tutor Dashboard" />
 
       <nav>
         <ul>

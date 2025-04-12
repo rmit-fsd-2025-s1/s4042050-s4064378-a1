@@ -3,7 +3,6 @@ import {
   AuthContainer,
   AuthFooter,
   AuthWrapper,
-  ErrorMessage,
   FormGroup,
   Link,
   StyledLabel,
@@ -14,6 +13,7 @@ import { HAVE_ACCOUNT, LOGIN, REGISTER, TECH_TEAM } from "./constant";
 import { addUser, isEmailExist } from "../util";
 import { Role } from "../types/User";
 import { Page } from "../App";
+import { ErrorMessage } from "../components/ActivityStatus/ErrorMessage";
 
 // Register Page Component
 export const RegisterPage = ({
@@ -130,7 +130,7 @@ export const RegisterPage = ({
           </FormGroup>
 
           <PrimaryButton type="submit">Register</PrimaryButton>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
+          {error && <ErrorMessage message={error} />}
 
           <AuthFooter>
             {HAVE_ACCOUNT}{" "}

@@ -6,6 +6,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import TutorDashboard from "./pages/Tutor/TutorDashboard";
 import { LecturerPage } from "./components/LecturerDashboard";
 import { addMockUsersToLocalStorage } from "./util/addMockUsersToLocalStorage";
+import Popup from "./components/Popup/Popup";
 
 export type Page = "login" | "register" | "tutor" | "lecturer";
 
@@ -22,6 +23,7 @@ const TechTeam = () => {
 
   useEffect(() => {
     addMockUsersToLocalStorage();
+    return () => localStorage.clear();
   }, []);
 
   const renderPage = () => {
@@ -35,6 +37,7 @@ const TechTeam = () => {
             setRegistrationSuccess={setRegistrationSuccess}
           />
           // <LecturerPage />
+          // <Popup />
         );
       case "register":
         return (

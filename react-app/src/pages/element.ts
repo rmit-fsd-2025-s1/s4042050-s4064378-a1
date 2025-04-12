@@ -35,14 +35,6 @@ export const SuccessMessage = styled.div`
   text-align: center;
 `;
 
-export const ErrorMessage = styled.div`
-  background-color: #ffdddd;
-  color: #ff0000;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 15px;
-`;
-
 export const AuthFooter = styled.div`
   margin-top: 20px;
   text-align: center;
@@ -96,5 +88,19 @@ export const StyledSelect = styled.select`
     outline: none;
     border-color: #007bff;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  }
+`;
+
+export const DashboardWrapper = styled.div`
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  box-shadow: var(--box-shadow);
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
   }
 `;
