@@ -65,27 +65,27 @@ const TutorDashboard: React.FC = () => {
     console.log(`Applied for ${role} role in course ${courseId}`);
 
     // Update local state to show the application
-    if (tutorProfile) {
-      const course = courses.find((c) => c.id === courseId);
-      if (course) {
-        const newRole: TutorRole = {
-          id: `new-${Date.now()}`,
-          courseId,
-          courseCode: course.code,
-          courseName: course.name,
-          semester: course.semester,
-          status: "pending",
-          role,
-        };
+    // if (tutorProfile) {
+    //   const course = courses.find((c) => c.id === courseId);
+    //   if (course) {
+    //     const newRole: TutorRole = {
+    //       id: `new-${Date.now()}`,
+    //       courseId,
+    //       courseCode: course.code,
+    //       courseName: course.name,
+    //       semester: course.semester,
+    //       status: "pending",
+    //       role,
+    //     };
 
-        setTutorProfile({
-          ...tutorProfile,
-          appliedRoles: tutorProfile.appliedRoles
-            ? [...tutorProfile.appliedRoles, newRole]
-            : [newRole],
-        });
-      }
-    }
+    //     setTutorProfile({
+    //       ...tutorProfile,
+    //       appliedRoles: tutorProfile.appliedRoles
+    //         ? [...tutorProfile.appliedRoles, newRole]
+    //         : [newRole],
+    //     });
+    //   }
+    // }
   };
 
   const updateProfile = (updatedProfile: Partial<Tutor>) => {

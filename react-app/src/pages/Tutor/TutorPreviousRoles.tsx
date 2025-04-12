@@ -25,7 +25,7 @@ const PreviousRoles: React.FC<PreviousRolesProps> = ({ roles }) => {
             </tr>
           </thead>
           <tbody>
-            {roles.map((role) => (
+            {/* {roles.map((role) => (
               <tr key={role.id}>
                 <td>{role.courseCode}</td>
                 <td>
@@ -35,7 +35,7 @@ const PreviousRoles: React.FC<PreviousRolesProps> = ({ roles }) => {
                 <td>{role.semester}</td>
                 <td>{role.role === "tutor" ? "Tutor" : "Lab Assistant"}</td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </RolesTable>
       )}
