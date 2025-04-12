@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Tutor, TutorRole } from "../../types/Tutor";
 import { SortOption } from "../../types/sortTypes";
-import { mockCourses } from "../../mockData/mockData"
+import { mockCourses } from "../../mockData/mockData"; // Adjust path if needed
 
 interface Props {
   applicants: Tutor[];
@@ -47,7 +47,8 @@ const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) =>
       });
     });
 
-    if (sortOption === "course") {
+    // ✅ Conditional Sorting
+    if (sortOption === "course" && selectedCourseId === "all") {
       matched.sort((a, b) => a.course.localeCompare(b.course));
     } else if (sortOption === "availability") {
       matched.sort((a, b) => a.availability.localeCompare(b.availability));
@@ -66,16 +67,19 @@ const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) =>
         className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/3"
       />
 
- 
+    
       <select
         onChange={(e) => setSortOption(e.target.value as SortOption)}
+        value={sortOption}
         className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
       >
-        <option value="course">Sort by Course</option>
+        <option value="course" disabled={selectedCourseId !== "all"}>
+          Sort by Course
+        </option>
         <option value="availability">Sort by Availability</option>
       </select>
 
-  
+    
       <select
         value={selectedCourseId}
         onChange={(e) => setSelectedCourseId(e.target.value)}
