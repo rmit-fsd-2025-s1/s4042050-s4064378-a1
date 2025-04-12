@@ -1,62 +1,93 @@
 import React, { useState, useEffect } from "react";
-import { Tutor } from "../../types/Tutor";
+import { Tutor, TutorRole } from "../../types/Tutor";
 import { SortOption } from "../../types/sortTypes";
-import "./styles/searchSortBar.css"
+import { mockCourses } from "../../mockData/mockData"
 
 interface Props {
   applicants: Tutor[];
-  onFilteredListChange: (filtered: Tutor[]) => void;
+  onFilteredListChange: (filtered: TutorApplication[]) => void;
 }
 
-const SearchSortBar: React.FC<Props> = ({
-  applicants,
-  onFilteredListChange,
-}) => {
+export interface TutorApplication extends Tutor {
+  course: string;
+  rank: number;
+  status: "pending" | "accepted" | "rejected";
+  appliedRole: TutorRole;
+}
+
+const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("course");
+  const [selectedCourseId, setSelectedCourseId] = useState("all");
 
   useEffect(() => {
-    let updatedList = [...applicants];
+    const matched: TutorApplication[] = [];
 
-    // Search
-    if (searchQuery.trim() !== "") {
-      updatedList = updatedList.filter(
-        (applicant) =>
-          applicant.firstName
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()) ||
-          applicant.lastName
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()) ||
-          applicant.course.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
+    applicants.forEach((tutor) => {
+      if (!tutor.appliedRoles?.length) return;
 
-    // Sort
+      tutor.appliedRoles.forEach((role) => {
+        const matchesCourse =
+          selectedCourseId === "all" || role.courseId === selectedCourseId;
+
+        const matchesSearch =
+          searchQuery.trim() === "" ||
+          tutor.firstName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          tutor.lastName?.toLowerCase().includes(searchQuery.toLowerCase());
+
+        if (matchesCourse && matchesSearch) {
+          matched.push({
+            ...tutor,
+            course: role.courseId,
+            rank: role.rank ?? 0,
+            status: role.status,
+            appliedRole: role,
+          });
+        }
+      });
+    });
+
+    // Sorting
     if (sortOption === "course") {
-      updatedList.sort((a, b) => a.course.localeCompare(b.course));
+      matched.sort((a, b) => a.course.localeCompare(b.course));
     } else if (sortOption === "availability") {
-      updatedList.sort((a, b) => a.availability.localeCompare(b.availability));
+      matched.sort((a, b) => a.availability.localeCompare(b.availability));
     }
 
-    onFilteredListChange(updatedList);
-  }, [searchQuery, sortOption, applicants]);
+    onFilteredListChange(matched);
+  }, [searchQuery, sortOption, selectedCourseId, applicants]);
 
   return (
-    <div className="search-sort-bar">
+    <div className="search-sort-bar flex flex-col md:flex-row items-center justify-between gap-4 p-4 border-b border-gray-300 mb-6">
+      {/* 🔍 Search Input */}
       <input
         type="text"
-        placeholder="Search by name or course..."
+        placeholder="Search by name..."
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="search-input"
+        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/3"
       />
 
+      {/* 🔃 Sort Dropdown */}
       <select
         onChange={(e) => setSortOption(e.target.value as SortOption)}
-        className="sort-select"
+        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
       >
         <option value="course">Sort by Course</option>
         <option value="availability">Sort by Availability</option>
+      </select>
+
+      {/* 🎓 Course Filter Dropdown */}
+      <select
+        value={selectedCourseId}
+        onChange={(e) => setSelectedCourseId(e.target.value)}
+        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
+      >
+        <option value="all">All Courses</option>
+        {mockCourses.map((course) => (
+          <option key={course.id} value={course.id}>
+            {course.name} ({course.code})
+          </option>
+        ))}
       </select>
     </div>
   );

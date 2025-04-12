@@ -6,11 +6,12 @@ import {loadTutors} from "../../util/localStorage"
 import TutorList from "./tutorList"
 import SearchSortBar from "./searchSortBar"
 import "./styles/index.css"
+import { TutorApplication } from "./searchSortBar";
 
 
 export const LecturerPage = () => {
     const [tutors, setTutors] = useState<Tutor[]>([])
-    const [filteredTutors, setFilteredTutors] = useState<Tutor[]>([])
+    const [filteredTutors, setFilteredTutors] = useState<TutorApplication[]>([])
     const [query, setQuery] = useState("")
     const [sortOption, setSortOption] = useState<SortOption>("course");
 
@@ -19,7 +20,6 @@ export const LecturerPage = () => {
       const data = loadTutors();
       console.log("Loaded from localStorage:", data); // 👈 LOG 1
       setTutors(data);
-      setFilteredTutors(data);
     }, []);
     
     useEffect(() => {

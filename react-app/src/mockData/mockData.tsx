@@ -125,6 +125,12 @@ export const mockTutors: Tutor[] = [
         status: "pending",
         rank: 0,
       },
+      {
+        courseId: "4",
+        role: "tutor",
+        status: "pending",
+        rank: 0,
+      }
     ],
   },
 ];
