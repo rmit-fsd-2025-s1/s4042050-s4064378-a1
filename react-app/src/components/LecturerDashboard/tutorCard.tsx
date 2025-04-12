@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TutorApplication } from "./tutorList";
 import { TutorRole } from "../../types/Tutor";
+import { getCourseDisplay } from "../../util/getCourseByID";
 
 interface Props {
   tutor: TutorApplication;
@@ -23,11 +24,11 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate, allTutors }) => {
 
     const duplicate = allTutors.find(
       (t) =>
+        t.id !== tutor.id &&
         t.appliedRole.courseId === tutor.course &&
         t.appliedRole.rank === rank &&
         t.appliedRole.status === "accepted"
     );
-    
 
     if (duplicate) {
       setError(`Rank ${rank} is already assigned to another accepted applicant for this course.`);
@@ -53,7 +54,7 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate, allTutors }) => {
         {tutor.firstName} {tutor.lastName}
       </h2>
       <p><strong>Email:</strong> {tutor.email}</p>
-      <p><strong>Applied Course ID:</strong> {tutor.course}</p>
+      <p><strong>Applied Course:</strong> {getCourseDisplay(tutor.course)}</p>
       <p><strong>Status:</strong> {status}</p>
       <p><strong>Availability:</strong> {tutor.availability}</p>
       <p><strong>Skills:</strong> {tutor.skills.join(", ")}</p>
