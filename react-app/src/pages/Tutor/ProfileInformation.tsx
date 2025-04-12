@@ -95,6 +95,17 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
       <h2>Profile Information</h2>
 
       <Section>
+        <div>
+          <label>Full Name: </label>
+          {profile.firstName + " " + profile.lastName}
+        </div>
+        <div>
+          <label>Email: </label>
+          {profile.email}
+        </div>
+      </Section>
+
+      <Section>
         <h3>Availability</h3>
         <RadioGroup>
           <label>

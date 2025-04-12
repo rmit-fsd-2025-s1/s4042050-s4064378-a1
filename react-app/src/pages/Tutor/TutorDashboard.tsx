@@ -7,45 +7,36 @@ import ProfileInformation from "./ProfileInformation";
 import { TutorDashboardWrapper } from "./element";
 import { mockCourses } from "../../mockData/mockData";
 import { Dashboard } from "../../components/DashBoard";
+import { User } from "../../types/User";
+import { getTutorByEmail } from "../../util/getTutorByEmail";
+import { addTutor } from "../../util/addTutor";
+import { updateTutor } from "../../util/updateTutor";
 
-const TutorDashboard: React.FC = () => {
+const TutorDashboard = ({ currentUser }: { currentUser: User | null }) => {
   const [tutorProfile, setTutorProfile] = useState<Tutor | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [activeTab, setActiveTab] = useState<"apply" | "profile" | "roles">(
-    "apply"
+    "profile"
   );
 
   useEffect(() => {
     // Mock API call to fetch tutor profile
     const fetchTutorProfile = async () => {
-      // In a real application, this would be an API call
-      setTutorProfile({
-        id: "t1",
-        // name: "Mock Tutor",
-        course: "COSC1234",
-        email: "abc@gmail.com",
-        availability: "part-time",
-        skills: ["JavaScript", "React", "Node.js"],
-        credentials: [
-          {
-            degree: "BSc Computer Science",
-            institution: "University of Technology",
-            year: 2022,
-          },
-        ],
-        appliedRoles: [
-          {
-            courseId: "course1",
-            role: "tutor",
-            status: "pending",
-            rank: 0,
-          },
-        ],
-        firstName: "",
-        lastName: "",
-        role: "tutor",
-        password: "abc",
-      });
+      if (currentUser) {
+        let tutor: Tutor | null = getTutorByEmail(currentUser.email);
+        if (!tutor) {
+          tutor = {
+            ...currentUser,
+            id: Date.now.toString(),
+            availability: "part-time",
+            skills: [],
+            credentials: [],
+            appliedRoles: [],
+          };
+          addTutor(tutor);
+        }
+        setTutorProfile(tutor);
+      }
     };
 
     // Mock API call to fetch available courses
@@ -56,7 +47,7 @@ const TutorDashboard: React.FC = () => {
 
     fetchTutorProfile();
     fetchCourses();
-  }, []);
+  }, [currentUser]);
 
   const handleApplyForRole = (
     courseId: string,
@@ -66,32 +57,37 @@ const TutorDashboard: React.FC = () => {
     console.log(`Applied for ${role} role in course ${courseId}`);
 
     // Update local state to show the application
-    // if (tutorProfile) {
-    //   const course = courses.find((c) => c.id === courseId);
-    //   if (course) {
-    //     const newRole: TutorRole = {
-    //       id: `new-${Date.now()}`,
-    //       courseId,
-    //       courseCode: course.code,
-    //       courseName: course.name,
-    //       semester: course.semester,
-    //       status: "pending",
-    //       role,
-    //     };
+    if (tutorProfile) {
+      const course = courses.find((c) => c.id === courseId);
+      if (course) {
+        const newRole: TutorRole = {
+          // id: `new-${Date.now()}`,
+          courseId,
+          // courseCode: course.code,
+          // courseName: course.name,
+          // semester: course.semester,
+          status: "pending",
+          rank: 0,
+          role,
+        };
 
-    //     setTutorProfile({
-    //       ...tutorProfile,
-    //       appliedRoles: tutorProfile.appliedRoles
-    //         ? [...tutorProfile.appliedRoles, newRole]
-    //         : [newRole],
-    //     });
-    //   }
-    // }
+        const updateProfile: Tutor = {
+          ...tutorProfile,
+          appliedRoles: tutorProfile.appliedRoles
+            ? [...tutorProfile.appliedRoles, newRole]
+            : [newRole],
+        };
+
+        setTutorProfile(updateProfile);
+        updateTutor(updateProfile);
+      }
+    }
   };
 
   const updateProfile = (updatedProfile: Partial<Tutor>) => {
     if (tutorProfile) {
       setTutorProfile({ ...tutorProfile, ...updatedProfile });
+      updateTutor({ ...tutorProfile, ...updatedProfile });
     }
   };
 
@@ -101,6 +97,14 @@ const TutorDashboard: React.FC = () => {
 
       <nav>
         <ul>
+          <li>
+            <button
+              className={activeTab === "profile" ? "active" : ""}
+              onClick={() => setActiveTab("profile")}
+            >
+              Profile Information
+            </button>
+          </li>
           <li>
             <button
               className={activeTab === "apply" ? "active" : ""}
@@ -115,14 +119,6 @@ const TutorDashboard: React.FC = () => {
               onClick={() => setActiveTab("roles")}
             >
               Previous Roles
-            </button>
-          </li>
-          <li>
-            <button
-              className={activeTab === "profile" ? "active" : ""}
-              onClick={() => setActiveTab("profile")}
-            >
-              Profile Information
             </button>
           </li>
         </ul>

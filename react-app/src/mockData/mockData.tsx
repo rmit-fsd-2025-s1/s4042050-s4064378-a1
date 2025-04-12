@@ -43,8 +43,7 @@ export const mockTutors: Tutor[] = [
   {
     ...mockUsers[1],
     id: "tutor-1",
-    // role: "lecturer", // should be tutor and defined in the user object
-    course: "COSC2758",
+    // course: "COSC2758",
     skills: ["JavaScript", "React", "CSS"],
     availability: "full-time",
     credentials: [
@@ -67,12 +66,7 @@ export const mockTutors: Tutor[] = [
   {
     id: "tutor-2",
     ...mockUsers[2],
-    // firstName: "Jane",
-    // lastName: "Smith",
-    // email: "jane.smith@example.com",
-    // password: "abc",
-    role: "lecturer",
-    course: "COSC2938",
+    // course: "COSC2938",
     skills: ["TypeScript", "Node.js", "Express"],
     availability: "part-time",
     credentials: [
@@ -101,13 +95,7 @@ export const mockTutors: Tutor[] = [
   {
     id: "tutor-3",
     ...mockUsers[3],
-    // name: "Arun Kumar",
-    // firstName: "Arun",
-    // lastName: "Kumar",
-    // email: "arun.k@example.com",
-    // password: "abcd",
-    // role: "tutor",
-    course: "COSC2758",
+    // course: "COSC2758",
     skills: ["Python", "Django"],
     availability: "full-time",
     credentials: [
@@ -130,7 +118,7 @@ export const mockTutors: Tutor[] = [
         role: "tutor",
         status: "pending",
         rank: 0,
-      }
+      },
     ],
   },
 ];
