@@ -25,11 +25,8 @@ export interface Course {
 }
 
 export interface TutorRole {
-  id: string;
+  // id: string; I feel we don't need this
   courseId: string;
-  courseCode: string;
-  courseName: string;
-  semester: string;
   role: "tutor" | "lab-assistant";
   status: "accepted" | "rejected" | "pending";
   rank?: number;

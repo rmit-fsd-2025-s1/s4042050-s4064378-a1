@@ -55,6 +55,14 @@ export const mockTutors: Tutor[] = [
       },
     ],
     selected: false,
+    appliedRoles: [
+      {
+        courseId: "1",
+        role: "tutor",
+        status: "pending",
+        rank: 0,
+      },
+    ],
   },
   {
     id: "tutor-2",
@@ -75,6 +83,20 @@ export const mockTutors: Tutor[] = [
       },
     ],
     selected: false,
+    appliedRoles: [
+      {
+        courseId: "2",
+        role: "tutor",
+        status: "pending",
+        rank: 0,
+      },
+      {
+        courseId: "1",
+        role: "tutor",
+        status: "pending",
+        rank: 0,
+      },
+    ],
   },
   {
     id: "tutor-3",
@@ -96,6 +118,14 @@ export const mockTutors: Tutor[] = [
       },
     ],
     selected: false,
+    appliedRoles: [
+      {
+        courseId: "3",
+        role: "tutor",
+        status: "pending",
+        rank: 0,
+      },
+    ],
   },
 ];
 

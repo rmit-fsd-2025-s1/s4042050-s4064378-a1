@@ -34,11 +34,7 @@ const TutorDashboard: React.FC = () => {
         ],
         appliedRoles: [
           {
-            id: "1",
             courseId: "course1",
-            courseCode: "COSC1234",
-            courseName: "Web development",
-            semester: "Fall 2024",
             role: "tutor",
             status: "pending",
             rank: 0,
