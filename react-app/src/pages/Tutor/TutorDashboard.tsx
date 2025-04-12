@@ -6,7 +6,7 @@ import PreviousRoles from "./TutorPreviousRoles";
 import ProfileInformation from "./ProfileInformation";
 import { TutorDashboardWrapper } from "./element";
 import { mockCourses } from "../../mockData/mockData";
-import { Dashboard } from "../DashBoard";
+import { Dashboard } from "../../components/DashBoard";
 
 const TutorDashboard: React.FC = () => {
   const [tutorProfile, setTutorProfile] = useState<Tutor | null>(null);

@@ -9,4 +9,5 @@ const ErrorMessageWrapper = styled.div`
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 15px;
+  margin-top: 10px;
 `;
