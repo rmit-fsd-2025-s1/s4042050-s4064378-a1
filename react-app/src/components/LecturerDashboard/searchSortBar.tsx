@@ -29,7 +29,9 @@ const SearchSortBar: React.FC<Props> = ({
   useEffect(() => {
     onViewModeChange(selectionFilter); // notify parent
 
-    // Overview mode flattened by tutor (1 application per tutor)
+    const search = searchQuery.toLowerCase().trim();
+
+    // Overview filters
     if (["most", "least", "unselected"].includes(selectionFilter)) {
       const selectionCountMap = new Map<string, number>();
       applicants.forEach((tutor) => {
@@ -76,20 +78,24 @@ const SearchSortBar: React.FC<Props> = ({
       return;
     }
 
-    // Default mode: fully flatten all matching applications
+    // All mode: flatten all matching course applications
     const matched: TutorApplication[] = [];
 
     applicants.forEach((tutor) => {
       if (!tutor.appliedRoles?.length) return;
 
-      const matchesSearch =
-        searchQuery.trim() === "" ||
-        tutor.firstName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tutor.lastName?.toLowerCase().includes(searchQuery.toLowerCase());
-
       tutor.appliedRoles.forEach((role) => {
         const matchesCourse =
           selectedCourseId === "all" || role.courseId === selectedCourseId;
+
+        const courseName = mockCourses.find((c) => c.id === role.courseId)?.name.toLowerCase() ?? "";
+
+        const matchesSearch =
+          search === "" ||
+          `${tutor.firstName} ${tutor.lastName}`.toLowerCase().includes(search) ||
+          tutor.availability?.toLowerCase().includes(search) ||
+          tutor.skills?.some((skill) => skill.toLowerCase().includes(search)) ||
+          courseName.includes(search);
 
         if (matchesCourse && matchesSearch) {
           matched.push({
@@ -103,6 +109,7 @@ const SearchSortBar: React.FC<Props> = ({
       });
     });
 
+    // Sorting
     if (sortOption === "course" && selectedCourseId === "all") {
       matched.sort((a, b) => a.course.localeCompare(b.course));
     } else if (sortOption === "availability") {
@@ -117,7 +124,7 @@ const SearchSortBar: React.FC<Props> = ({
 
       <input
         type="text"
-        placeholder="Search by name..."
+        placeholder="Search by tutor name, course, availability, skills..."
         onChange={(e) => setSearchQuery(e.target.value)}
         className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/3"
       />
