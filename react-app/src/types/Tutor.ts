@@ -3,7 +3,7 @@ import { User } from "./User";
 export interface Tutor extends User {
   id: string;
   // name:string, // use first name and last name from User parent object
-  course: string;
+  // course: string; // should be removed
   availability: "full-time" | "part-time";
   skills: string[];
   credentials: {

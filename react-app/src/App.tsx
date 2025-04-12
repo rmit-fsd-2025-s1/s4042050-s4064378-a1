@@ -5,7 +5,7 @@ import { App } from "./elements";
 import { RegisterPage } from "./pages/RegisterPage";
 import TutorDashboard from "./pages/Tutor/TutorDashboard";
 import { LecturerPage } from "./components/LecturerDashboard";
-import { addMockUsersToLocalStorage } from "./util/addMockUsersToLocalStorage";
+import { addMockDataToLocalStorage } from "./util/addMockDataToLocalStorage";
 
 export type Page = "login" | "register" | "tutor" | "lecturer";
 
@@ -21,7 +21,7 @@ const TechTeam = () => {
   };
 
   useEffect(() => {
-    addMockUsersToLocalStorage();
+    addMockDataToLocalStorage();
     return () => localStorage.clear();
   }, []);
 
@@ -47,7 +47,7 @@ const TechTeam = () => {
           // <CourseForm onSubmit={() => {}} />
         );
       case "tutor":
-        return <TutorDashboard />;
+        return <TutorDashboard currentUser={currentUser} />;
       case "lecturer":
         return <LecturerPage />;
       default:

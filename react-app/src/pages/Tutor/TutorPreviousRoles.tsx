@@ -1,13 +1,16 @@
 // src/components/PreviousRoles.tsx
-import React from "react";
-import { TutorRole } from "../../types/Tutor";
+import React, { useState } from "react";
+import { Course, TutorRole } from "../../types/Tutor";
 import { PreviousRolesHeading, RolesTable } from "./element";
+import { getAllCourses } from "../../util/getAllCourses";
 
 interface PreviousRolesProps {
   roles: TutorRole[];
 }
 
 const PreviousRoles: React.FC<PreviousRolesProps> = ({ roles }) => {
+  const [allCourse, setAllCourse] = useState<Course[]>(getAllCourses());
+
   return (
     <div className="previous-roles">
       <PreviousRolesHeading>Previous Roles</PreviousRolesHeading>
@@ -25,17 +28,24 @@ const PreviousRoles: React.FC<PreviousRolesProps> = ({ roles }) => {
             </tr>
           </thead>
           <tbody>
-            {/* {roles.map((role) => (
-              <tr key={role.id}>
-                <td>{role.courseCode}</td>
-                <td>
-                  {role.courseName.charAt(0).toUpperCase() +
-                    role.courseName.slice(1)}
-                </td>
-                <td>{role.semester}</td>
-                <td>{role.role === "tutor" ? "Tutor" : "Lab Assistant"}</td>
-              </tr>
-            ))} */}
+            {roles.map((role) => {
+              const course = allCourse.find(
+                (course) => course.code === role.courseId
+              );
+              if (!course) return <></>;
+
+              return (
+                <tr key={role.courseId}>
+                  <td>{course?.code}</td>
+                  <td>
+                    {course!.name.charAt(0).toUpperCase() +
+                      course!.name.slice(1)}
+                  </td>
+                  <td>{course?.semester}</td>
+                  <td>{role.role === "tutor" ? "Tutor" : "Lab Assistant"}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </RolesTable>
       )}
