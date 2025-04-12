@@ -7,6 +7,7 @@ import TutorList from "./tutorList"
 import SearchSortBar from "./searchSortBar"
 import "./styles/index.css"
 import { TutorApplication } from "./searchSortBar";
+import TutorOverviewList from "./TutorOverviewList"
 
 
 export const LecturerPage = () => {
@@ -14,6 +15,7 @@ export const LecturerPage = () => {
     const [filteredTutors, setFilteredTutors] = useState<TutorApplication[]>([])
     const [query, setQuery] = useState("")
     const [sortOption, setSortOption] = useState<SortOption>("course");
+    const [viewMode, setViewMode] = useState("all");
 
     useEffect(() => {
       //saveTutors(); // seeds mock data
@@ -28,12 +30,17 @@ export const LecturerPage = () => {
 
 
 return (
-    <div className="lecturer-dashboard">
-    <SearchSortBar 
+  <div className="lecturer-dashboard">
+    <SearchSortBar
       applicants={tutors}
       onFilteredListChange={setFilteredTutors}
+      onViewModeChange={setViewMode}
     />
-    <TutorList tutors={filteredTutors} />
+    {["most", "least", "unselected"].includes(viewMode)  ? (
+      <TutorOverviewList tutors={filteredTutors} />
+    ) : (
+      <TutorList tutors={filteredTutors} />
+    )}
   </div>
-  );
+);
 };
