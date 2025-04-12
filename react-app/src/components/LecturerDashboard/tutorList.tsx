@@ -3,7 +3,7 @@ import TutorCard from "./tutorCard";
 import { Tutor } from "../../types/Tutor";
 import { TutorRole } from "../../types/Tutor";
 
-// Reuse same flattened structure from SearchSortBar
+
 export interface TutorApplication extends Tutor {
   course: string;
   rank: number;
@@ -12,7 +12,7 @@ export interface TutorApplication extends Tutor {
 }
 
 interface Props {
-  tutors: TutorApplication[]; // already filtered and flattened
+  tutors: TutorApplication[]; 
 }
 
 const TutorList: React.FC<Props> = ({ tutors }) => {

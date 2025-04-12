@@ -47,7 +47,6 @@ const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) =>
       });
     });
 
-    // Sorting
     if (sortOption === "course") {
       matched.sort((a, b) => a.course.localeCompare(b.course));
     } else if (sortOption === "availability") {
@@ -59,7 +58,7 @@ const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) =>
 
   return (
     <div className="search-sort-bar flex flex-col md:flex-row items-center justify-between gap-4 p-4 border-b border-gray-300 mb-6">
-      {/* 🔍 Search Input */}
+   
       <input
         type="text"
         placeholder="Search by name..."
@@ -67,7 +66,7 @@ const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) =>
         className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/3"
       />
 
-      {/* 🔃 Sort Dropdown */}
+ 
       <select
         onChange={(e) => setSortOption(e.target.value as SortOption)}
         className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
@@ -76,7 +75,7 @@ const SearchSortBar: React.FC<Props> = ({ applicants, onFilteredListChange }) =>
         <option value="availability">Sort by Availability</option>
       </select>
 
-      {/* 🎓 Course Filter Dropdown */}
+  
       <select
         value={selectedCourseId}
         onChange={(e) => setSelectedCourseId(e.target.value)}

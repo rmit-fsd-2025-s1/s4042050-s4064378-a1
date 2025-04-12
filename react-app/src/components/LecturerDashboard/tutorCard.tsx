@@ -29,7 +29,6 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate }) => {
 
   const handleSave = () => {
     alert(`Saved ${tutor.firstName} ${tutor.lastName} for course ${tutor.course} with rank ${rank}`);
-    // You can call onUpdate here if needed
   };
 
   const courseDisplay = getCourseDisplay(tutor.course);

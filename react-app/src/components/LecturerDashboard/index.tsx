@@ -18,15 +18,15 @@ export const LecturerPage = () => {
     useEffect(() => {
       saveTutors(); // seeds mock data
       const data = loadTutors();
-      console.log("Loaded from localStorage:", data); // 👈 LOG 1
+      console.log("Loaded from localStorage:", data); 
       setTutors(data);
     }, []);
     
     useEffect(() => {
-      console.log("📦 tutors state updated:", tutors); // 👈 LOG 2
+      console.log("📦 tutors state updated:", tutors); 
     }, [tutors]);
 
-  //  <ChartsPanel applicants={filteredTutors} />
+
 return (
     <div className="lecturer-dashboard">
     <SearchSortBar 
