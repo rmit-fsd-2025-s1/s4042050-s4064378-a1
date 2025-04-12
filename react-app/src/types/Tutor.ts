@@ -11,9 +11,6 @@ export interface Tutor extends User {
     institution: string;
     year: number;
   }[];
-  comment?: string;
-  selected?: boolean; // should be removed goes into appliedroles-> status
-  rank?: number; // should goes into applied roles
   appliedRoles?: TutorRole[];
 }
 
@@ -30,4 +27,5 @@ export interface TutorRole {
   role: "tutor" | "lab-assistant";
   status: "accepted" | "rejected" | "pending";
   rank?: number;
+  comment?:string
 }

@@ -54,7 +54,6 @@ export const mockTutors: Tutor[] = [
         year: 2001,
       },
     ],
-    selected: false,
     appliedRoles: [
       {
         courseId: "1",
@@ -82,7 +81,6 @@ export const mockTutors: Tutor[] = [
         year: 2001,
       },
     ],
-    selected: false,
     appliedRoles: [
       {
         courseId: "2",
@@ -117,7 +115,6 @@ export const mockTutors: Tutor[] = [
         year: 2001,
       },
     ],
-    selected: false,
     appliedRoles: [
       {
         courseId: "3",
