@@ -16,7 +16,7 @@ export const LecturerPage = () => {
     const [sortOption, setSortOption] = useState<SortOption>("course");
 
     useEffect(() => {
-      saveTutors(); // seeds mock data
+      //saveTutors(); // seeds mock data
       const data = loadTutors();
       console.log("Loaded from localStorage:", data); 
       setTutors(data);

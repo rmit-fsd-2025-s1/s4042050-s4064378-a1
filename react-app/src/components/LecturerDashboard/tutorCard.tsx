@@ -1,37 +1,51 @@
 import React, { useState } from "react";
-import { getCourseDisplay } from "../../util/getCourseByID";
+import { TutorApplication } from "./tutorList";
+import { TutorRole } from "../../types/Tutor";
 
 interface Props {
-  tutor: {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    course: string;
-    availability: "full-time" | "part-time";
-    skills: string[];
-    credentials: {
-      degree: string;
-      institution: string;
-      year: number;
-    }[];
-    role: string;
-    rank: number;
-    status: "pending" | "accepted" | "rejected";
-  };
-  onUpdate: (updatedApplicant: any) => void;
+  tutor: TutorApplication;
+  onUpdate: (update: { id: string; updatedRole: TutorRole }) => void;
+  allTutors: TutorApplication[];
 }
 
-const TutorCard: React.FC<Props> = ({ tutor, onUpdate }) => {
-  const [selected, setSelected] = useState(false);
-  const [comment, setComment] = useState("");
+const TutorCard: React.FC<Props> = ({ tutor, onUpdate, allTutors }) => {
+  const [status, setStatus] = useState<"pending" | "accepted" | "rejected">(tutor.status);
   const [rank, setRank] = useState<number>(tutor.rank);
+  const [error, setError] = useState<string>("");
 
   const handleSave = () => {
-    alert(`Saved ${tutor.firstName} ${tutor.lastName} for course ${tutor.course} with rank ${rank}`);
-  };
+    setError("");
 
-  const courseDisplay = getCourseDisplay(tutor.course);
+    if (status !== "accepted") {
+      setError("Please mark the applicant as accepted before assigning a rank.");
+      return;
+    }
+
+    const duplicate = allTutors.find(
+      (t) =>
+        t.appliedRole.courseId === tutor.course &&
+        t.appliedRole.rank === rank &&
+        t.appliedRole.status === "accepted"
+    );
+    
+
+    if (duplicate) {
+      setError(`Rank ${rank} is already assigned to another accepted applicant for this course.`);
+      return;
+    }
+
+    const updated = {
+      id: tutor.id,
+      updatedRole: {
+        courseId: tutor.course,
+        role: tutor.appliedRole.role,
+        rank,
+        status,
+      },
+    };
+
+    onUpdate(updated);
+  };
 
   return (
     <div className="tutor-card border rounded-lg shadow-md p-6 mb-6 bg-white">
@@ -39,8 +53,8 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate }) => {
         {tutor.firstName} {tutor.lastName}
       </h2>
       <p><strong>Email:</strong> {tutor.email}</p>
-      <p><strong>Applied Course:</strong> {courseDisplay}</p>
-      <p><strong>Status:</strong> {tutor.status}</p>
+      <p><strong>Applied Course ID:</strong> {tutor.course}</p>
+      <p><strong>Status:</strong> {status}</p>
       <p><strong>Availability:</strong> {tutor.availability}</p>
       <p><strong>Skills:</strong> {tutor.skills.join(", ")}</p>
 
@@ -48,9 +62,12 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate }) => {
         <label className="block mb-2">
           <input
             type="checkbox"
-            checked={selected}
-            onChange={(e) => setSelected(e.target.checked)}
-          /> Select this applicant
+            checked={status === "accepted"}
+            onChange={(e) =>
+              setStatus(e.target.checked ? "accepted" : "rejected")
+            }
+          />{" "}
+          Mark as accepted
         </label>
 
         <label className="block mt-2">
@@ -60,6 +77,7 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate }) => {
             min={1}
             max={10}
             value={rank}
+            disabled={status !== "accepted"}
             onChange={(e) => {
               const val = parseInt(e.target.value);
               setRank(isNaN(val) ? 0 : val);
@@ -68,14 +86,7 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate }) => {
           />
         </label>
 
-        <label className="block mt-2">
-          Comment:
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            className="block mt-1 w-full border px-2 py-1"
-          />
-        </label>
+        {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
 
         <button
           onClick={handleSave}
