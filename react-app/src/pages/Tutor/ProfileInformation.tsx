@@ -134,12 +134,14 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
         </div>
         <div>
           <label>Email: </label>
+
           {profile.email}
         </div>
       </Section>
 
       <Section>
         <h3>Availability</h3>
+        {/** radio group for select tutor availability */}
         <RadioGroup>
           <label>
             <input
@@ -165,6 +167,7 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
       </Section>
 
       <Section>
+        {/** skills list */}
         <h3>Skills</h3>
         <SkillList>
           {skills.map((skill) => (
@@ -193,6 +196,7 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
         </FormGroupWrapper>
       </Section>
 
+      {/** academic credentials */}
       <Section>
         <h3>Academic Credentials</h3>
         <CredentialList>
@@ -211,6 +215,7 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
           ))}
         </CredentialList>
 
+        {/** add new academic credentials */}
         <AddCredentialWrapper>
           <h4>Add New Credential</h4>
           <FormGroupWrapper>

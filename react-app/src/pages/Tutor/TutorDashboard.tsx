@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Course, Tutor, TutorRole } from "../../types/Tutor";
-import TutorApplication from "./TutorApplication";
 import PreviousRoles from "./TutorPreviousRoles";
 import ProfileInformation from "./ProfileInformation";
 import { TutorDashboardWrapper } from "./element";
@@ -11,6 +10,10 @@ import { getTutorByEmail } from "../../util/getTutor";
 import { addTutor } from "../../util/addTutor";
 import { updateTutor } from "../../util/updateTutor";
 import { Page } from "../../App";
+import { NavBar } from "./NavBar";
+import TutorApplication from "./TutorApplication";
+
+export type TutoTabType = "apply" | "profile" | "roles";
 
 /**
  * Dashboard view for tutors with navigation and user info.
@@ -28,9 +31,7 @@ const TutorDashboard = ({
 }) => {
   const [tutorProfile, setTutorProfile] = useState<Tutor | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
-  const [activeTab, setActiveTab] = useState<"apply" | "profile" | "roles">(
-    "profile"
-  );
+  const [activeTab, setActiveTab] = useState<TutoTabType>("profile");
 
   useEffect(() => {
     // Mock API call to fetch tutor profile
@@ -94,6 +95,7 @@ const TutorDashboard = ({
   };
 
   const updateProfile = (updatedProfile: Partial<Tutor>) => {
+    // update tutor profile
     if (tutorProfile) {
       setTutorProfile({ ...tutorProfile, ...updatedProfile });
       updateTutor({ ...tutorProfile, ...updatedProfile });
@@ -103,36 +105,7 @@ const TutorDashboard = ({
   return (
     <TutorDashboardWrapper>
       <Dashboard header="Tutor Dashboard" navigateTo={navigateTo} />
-
-      <nav>
-        <ul>
-          <li>
-            <button
-              className={activeTab === "profile" ? "active" : ""}
-              onClick={() => setActiveTab("profile")}
-            >
-              Profile Information
-            </button>
-          </li>
-          <li>
-            <button
-              className={activeTab === "apply" ? "active" : ""}
-              onClick={() => setActiveTab("apply")}
-            >
-              Apply for Roles
-            </button>
-          </li>
-          <li>
-            <button
-              className={activeTab === "roles" ? "active" : ""}
-              onClick={() => setActiveTab("roles")}
-            >
-              Applied Roles
-            </button>
-          </li>
-        </ul>
-      </nav>
-
+      <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
       <main>
         {activeTab === "apply" && (
           <TutorApplication
