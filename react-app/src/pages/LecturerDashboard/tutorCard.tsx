@@ -8,6 +8,8 @@ import {
   Textarea, SuccessMessage, TutorDetails, RowLabel, Row, RowValue
 } from "./styles/TutorCard";
 import Dropdown from "../../components/DropDown"
+import { loadTutors } from "../../util/localStorage";
+import { flattenTutors } from "../../util/getTutor";
 
 
 interface Props {
@@ -37,7 +39,9 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate, allTutors }) => {
     // rank can be assigend only if the user status is accepted
     // Rank should be greater than 0
     if (tutorStatus === "accepted" && tutorRank > 0) {
-      const duplicateRank = allTutors.find(
+      const tutors = loadTutors()
+      const tutorsToFilter = flattenTutors(tutors)
+      const duplicateRank = tutorsToFilter.find(
         (t) =>
           t.appliedRole.rank === tutorRank &&
           t.appliedRole.status === "accepted" &&
