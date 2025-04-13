@@ -4,8 +4,8 @@ export const TutoCard = styled.div`
   border: 2px solid #e5e7eb;
   padding: 1.45rem;
   border-radius: 0.85rem;
-  background: rgb(94, 170, 245); /* light gray-blue background */
-  margin: 10px;
+  background: rgb(222, 228, 235); /* light gray-blue background */
+  margin-bottom: 10px
   transition: box-shadow 0.3s ease;
   box-shadow: 0 3px 5px rgba(11, 2, 61, 0.06);
   width: 100%;
