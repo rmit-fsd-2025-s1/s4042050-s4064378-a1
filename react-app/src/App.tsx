@@ -77,7 +77,8 @@ const TechTeam = () => {
           <TutorDashboard currentUser={currentUser} navigateTo={navigateTo} />
         );
       case "lecturer":
-        return <LecturerPage />;
+        return <LecturerPage
+                navigateTo={navigateTo} />;
       default:
         return (
           <LoginPage
