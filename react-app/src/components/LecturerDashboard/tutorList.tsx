@@ -16,18 +16,22 @@ interface Props {
 
 const TutorList: React.FC<Props> = ({ tutors }) => {
   if (tutors.length === 0) {
-    return <p className="text-gray-500 text-center mt-6">No applicants found.</p>;
+    return (
+      <p className="text-gray-500 text-center mt-6">No applicants found.</p>
+    );
   }
 
   const handleUpdate = (update: { id: string; updatedRole: TutorRole }) => {
-    console.log(update)
     const allTutors = loadTutors();
 
     const updatedList = allTutors.map((tutor) => {
       if (tutor.id === update.id) {
-        const newRoles = tutor.appliedRoles?.map((role) =>
-          role.courseId === update.updatedRole.courseId ? update.updatedRole : role
-        ) ?? [];
+        const newRoles =
+          tutor.appliedRoles?.map((role) =>
+            role.courseId === update.updatedRole.courseId
+              ? update.updatedRole
+              : role
+          ) ?? [];
 
         return {
           ...tutor,
@@ -37,7 +41,7 @@ const TutorList: React.FC<Props> = ({ tutors }) => {
       return tutor;
     });
 
-    console.log(updatedList)
+    console.log(updatedList);
 
     saveTutors(updatedList);
   };

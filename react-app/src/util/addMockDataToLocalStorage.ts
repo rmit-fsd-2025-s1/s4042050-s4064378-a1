@@ -6,7 +6,14 @@ import {
 } from "./constant";
 
 export const addMockDataToLocalStorage = () => {
-  localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(mockUsers));
-  localStorage.setItem(TUTOR_LOCAL_STORAGE_KEY, JSON.stringify(mockTutors));
-  localStorage.setItem(COURSE_LOCAL_STORAGE_KEY, JSON.stringify(mockCourses));
+  const users = localStorage.getItem(USER_LOCAL_STORAGE_KEY);
+  const tutors = localStorage.getItem(TUTOR_LOCAL_STORAGE_KEY);
+  const courses = localStorage.getItem(COURSE_LOCAL_STORAGE_KEY);
+
+  if (!users)
+    localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(mockUsers));
+  if (!tutors)
+    localStorage.setItem(TUTOR_LOCAL_STORAGE_KEY, JSON.stringify(mockTutors));
+  if (!courses)
+    localStorage.setItem(COURSE_LOCAL_STORAGE_KEY, JSON.stringify(mockCourses));
 };

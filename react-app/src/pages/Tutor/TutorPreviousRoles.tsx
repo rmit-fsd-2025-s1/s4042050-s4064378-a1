@@ -30,12 +30,12 @@ const PreviousRoles: React.FC<PreviousRolesProps> = ({ roles }) => {
           <tbody>
             {roles.map((role) => {
               const course = allCourse.find(
-                (course) => course.code === role.courseId
+                (course) => course.id === role.courseId
               );
               if (!course) return <></>;
 
               return (
-                <tr key={role.courseId}>
+                <tr key={course.id}>
                   <td>{course?.code}</td>
                   <td>
                     {course!.name.charAt(0).toUpperCase() +
