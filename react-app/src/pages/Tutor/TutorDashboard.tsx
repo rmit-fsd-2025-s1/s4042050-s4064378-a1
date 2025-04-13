@@ -1,4 +1,3 @@
-// src/pages/TutorDashboard.tsx
 import React, { useState, useEffect } from "react";
 import { Course, Tutor, TutorRole } from "../../types/Tutor";
 import TutorApplication from "./TutorApplication";
@@ -68,11 +67,7 @@ const TutorDashboard = ({
       const course = courses.find((c) => c.id === courseId);
       if (course) {
         const newRole: TutorRole = {
-          // id: `new-${Date.now()}`,
           courseId,
-          // courseCode: course.code,
-          // courseName: course.name,
-          // semester: course.semester,
           status: "pending",
           rank: 0,
           role,

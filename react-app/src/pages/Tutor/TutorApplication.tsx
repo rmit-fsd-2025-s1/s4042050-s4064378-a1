@@ -10,6 +10,7 @@ import {
   TutorApplicationSubHeading,
 } from "./element";
 import { ErrorMessage } from "../../components/ActivityStatus/ErrorMessage";
+import { Popup } from "../../components/Popup";
 
 interface TutorApplicationProps {
   courses: Course[];
@@ -27,6 +28,8 @@ const TutorApplication: React.FC<TutorApplicationProps> = ({
     "tutor"
   );
   const [error, setError] = useState<string>("");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +40,9 @@ const TutorApplication: React.FC<TutorApplicationProps> = ({
     }
 
     onApply(selectedCourse, selectedRole);
+
+    setIsPopupOpen(true);
+    setPopupMessage("Course Added Successfully!");
 
     // Reset form
     setSelectedCourse("");
@@ -121,6 +127,11 @@ const TutorApplication: React.FC<TutorApplicationProps> = ({
           ))}
         </CoursesList>
       </CurrentSemesterCourses>
+      <Popup
+        isOpen={isPopupOpen}
+        message={popupMessage}
+        setIsOpen={setIsPopupOpen}
+      />
     </div>
   );
 };

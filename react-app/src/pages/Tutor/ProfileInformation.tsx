@@ -1,9 +1,7 @@
-// src/components/ProfileInformation.tsx
 import React, { useState } from "react";
 import { Tutor } from "../../types/Tutor";
 import {
   AddCredentialWrapper,
-  AddSkillWrapper,
   CredentialItem,
   CredentialList,
   FormGroupWrapper,
@@ -15,6 +13,7 @@ import {
   SkillTag,
   SubmitButton,
 } from "./element";
+import { Popup } from "../../components/Popup";
 
 interface ProfileInformationProps {
   profile: Tutor;
@@ -37,13 +36,22 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
     year: new Date().getFullYear(),
   });
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+
   const handleAddSkill = () => {
-    if (newSkill.trim() !== "" && !skills.includes(newSkill.trim())) {
+    if (newSkill.trim() === "") return;
+    if (!skills.includes(newSkill.trim())) {
       const updatedSkills = [...skills, newSkill.trim()];
       setSkills(updatedSkills);
       onUpdate({ skills: updatedSkills });
       setNewSkill("");
+
+      setPopupMessage("Skill Added Successfully!");
     }
+    setPopupMessage("Skill Already Exist!");
+
+    setIsPopupOpen(true);
   };
 
   const handleRemoveSkill = (skillToRemove: string) => {
@@ -80,6 +88,9 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
       ];
 
       onUpdate({ credentials: updatedCredentials });
+
+      setPopupMessage("Credentials Added Successfully!");
+      setIsPopupOpen(true);
 
       // Reset form
       setNewCredential({
@@ -232,6 +243,11 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
           </SubmitButton>
         </AddCredentialWrapper>
       </Section>
+      <Popup
+        isOpen={isPopupOpen}
+        message={popupMessage}
+        setIsOpen={setIsPopupOpen}
+      />
     </ProfileInformationWrapper>
   );
 };
