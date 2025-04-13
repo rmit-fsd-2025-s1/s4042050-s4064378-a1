@@ -28,19 +28,21 @@ export const Select = styled.select`
   
 `;
 
-export const StyledInput = styled.input`
+export const Input = styled.input`
   width: 100%;
-  max-width: 16rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  font-size: 0.9rem;
+  max-width: 20rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 1px 2px rgba(20, 8, 8, 0.03);
+  border: 1.2px solid #d1d5db;
+
 
   &:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 0 2px rgba(47, 116, 227, 0.5);
+    border-color:rgb(64, 115, 196);
+   
   }
 `;
 

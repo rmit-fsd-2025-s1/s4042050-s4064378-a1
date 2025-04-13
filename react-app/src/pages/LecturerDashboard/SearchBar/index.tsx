@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Tutor, TutorApplication, TutorRole } from "../../../types/Tutor";
 import { SortOption } from "../../../types/sortTypes";
 import { mockCourses } from "../../../mockData/mockData";
-import SearchInput from "./SearchInput";
-import SortSelect from "./SortSelect";
+import SearchBar from "./SearchBar";
+import SortByCourseOrAvailability from "./SortByCourseOrAvailability";
 import CourseSelect from "./CourseSelect";
 import SelectionFilter from "./SelectionFilter";
 import { Filter } from "../styles/Filters";
@@ -126,13 +126,14 @@ const SearchSortBar: React.FC<Props> = ({
 
     onFilteredchangedList(SelectedTutors);
   }, [userSearchQuery, sortByCourseAvailability, filterByCourse, tutorSelectFilter, TutorApplicants]);
-
+  
+  // For each filter and sorting tasks different components are created and used here
   return (
     <Filter>
-      <SearchInput value={userSearchQuery} onChange={setuserSearchQuery} />
+      <SearchBar value={userSearchQuery} onChange={setuserSearchQuery} />
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "space-between", width: "100%" }}>
-        <SortSelect
+        <SortByCourseOrAvailability
           value={sortByCourseAvailability}
           onChange={setsortByCourseAvailability}
           disabled={["most", "least", "unselected"].includes(tutorSelectFilter)}
