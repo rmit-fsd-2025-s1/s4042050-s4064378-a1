@@ -8,6 +8,7 @@ interface Props {
   disabled: boolean;
 }
 
+//Drop down  for courses
 const CourseBasedFilter: React.FC<Props> = ({ value, onChange, disabled }) => {
   return (
     <Select
