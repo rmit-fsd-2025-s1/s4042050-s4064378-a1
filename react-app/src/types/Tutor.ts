@@ -29,3 +29,10 @@ export interface TutorRole {
   rank?: number;
   comment?:string
 }
+
+export interface TutorApplication extends Tutor {
+  course: string;
+  rank: number;
+  status: "pending" | "accepted" | "rejected";
+  appliedRole: TutorRole;
+}
