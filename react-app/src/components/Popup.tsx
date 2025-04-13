@@ -28,7 +28,6 @@ export const Popup = ({
         <PopupContainer>
           <PopupContent>
             <CloseButton onClick={togglePopup}>&times;</CloseButton>
-            {/* <h2>Hello!</h2> */}
             <h3>{message}</h3>
           </PopupContent>
           <PopupOverlay onClick={togglePopup} />

@@ -24,19 +24,21 @@ import { ErrorMessage } from "../components/ActivityStatus/ErrorMessage";
 const REACT_APP_SITE_KEY = "6LfaTQErAAAAAM4oamNji2SSm2uVi3-gUk1ul29S";
 const SITE_SECRET = "6LfaTQErAAAAACODMgjJzjm-jubUGIz8S13k9m2H";
 
-export const LoginPage = ({
-  setCurrentUser,
-  navigateTo,
-  registrationSuccess,
-  setRegistrationSuccess,
-}: {
+export type LoginPageProps = {
   setCurrentUser: (user: User) => void;
   navigateTo: (page: any) => void;
   registrationSuccess?: boolean;
   setRegistrationSuccess?: React.Dispatch<
     React.SetStateAction<boolean | undefined>
   >;
-}) => {
+};
+
+export const LoginPage = ({
+  setCurrentUser,
+  navigateTo,
+  registrationSuccess,
+  setRegistrationSuccess,
+}: LoginPageProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -96,7 +98,7 @@ export const LoginPage = ({
     <AuthWrapper>
       <AuthContainer>
         <h1>{TECH_TEAM}</h1>
-        <h2>{LOGIN}</h2>
+        <h2 data-testid="login">{LOGIN}</h2>
 
         {registrationSuccess && (
           <SuccessMessage>{REGISTER_SUCCESS}</SuccessMessage>
