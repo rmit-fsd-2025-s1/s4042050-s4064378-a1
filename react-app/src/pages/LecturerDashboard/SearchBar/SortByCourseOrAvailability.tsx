@@ -1,27 +1,29 @@
 import React from "react";
 import { SortOption } from "../../../types/sortTypes";
+import { Select } from "../styles/Shared";
 
 interface Props {
-  value: SortOption;
   onChange: (value: SortOption) => void;
-  disabled: boolean;
   selectedCourseId: string;
+  disabled: boolean;
+  value: SortOption;
+ 
 }
-
-const SortSelect: React.FC<Props> = ({ value, onChange, disabled, selectedCourseId }) => {
+//This option is disable if one if the corse is selected in the course filter
+const SortByCourseOrAvailability: React.FC<Props> = ({ value, onChange, disabled, selectedCourseId }) => {
   return (
-    <select
+    <Select
       value={value}
       onChange={(e) => onChange(e.target.value as SortOption)}
-      className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
       disabled={disabled}
     >
+      <option value="availability">Sort by Availability</option>
       <option value="course" disabled={selectedCourseId !== "all"}>
         Sort by Course
       </option>
-      <option value="availability">Sort by Availability</option>
-    </select>
+    </Select>
+
   );
 };
 
-export default SortSelect;
+export default SortByCourseOrAvailability;
