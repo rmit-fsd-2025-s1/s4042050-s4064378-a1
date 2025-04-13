@@ -42,6 +42,7 @@ const TutorApplication: React.FC<TutorApplicationProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // input validation
     if (!selectedCourse) {
       setError("Please select a course");
       return;
