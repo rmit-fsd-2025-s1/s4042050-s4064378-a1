@@ -32,12 +32,18 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate, allTutors }) => {
     setErrorMessage("");
     setSuccessStatus(false);
 
+                           /// Validations////////////
+
     // When the tutor is updated the validation is checked
     // This validation checks if perticuler rank is assigned to a user before
     // who has been selected on the same subject. 
     // If the same rank is assigned to another user with same applied subject error message is shown
     // rank can be assigend only if the user status is accepted
     // Rank should be greater than 0
+
+    
+    //When seting user stutus valdations have been added only to select acepted statusses
+    // Invalid status are not shown Lecture
     if (tutorStatus === "accepted" && tutorRank > 0) {
       const tutors = loadTutors()
       const tutorsToFilter = flattenTutors(tutors)
