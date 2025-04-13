@@ -9,8 +9,9 @@ interface Props {
 // When the user select most selected tutor, least selected tutor or not selected tutor this
 // Component is used
 const TutorOverviewList: React.FC<Props> = ({ tutors }) => {
-  
-  const filteredTutors = Array.from(new Map(tutors.map(t => [t.id, t])).values());
+  const filteredTutors = Array.from(
+    new Map(tutors.map((t) => [t.id, t])).values()
+  );
 
   if (filteredTutors.length === 0) {
     return <p className="text-gray-500 text-center mt-6">No Tutors found.</p>;
@@ -24,14 +25,15 @@ const TutorOverviewList: React.FC<Props> = ({ tutors }) => {
         width: "100%",
       }}
     >
-      <TutorOverviewGrid style={{ width: filteredTutors.length === 1 ? "500px" : "100%" }}>
+      <TutorOverviewGrid
+        style={{ width: filteredTutors.length === 1 ? "500px" : "100%" }}
+      >
         {filteredTutors.map((tutor) => (
           <TutorOverviewCard key={tutor.id} tutor={tutor} />
         ))}
       </TutorOverviewGrid>
     </div>
   );
-  
 };
 
 export default TutorOverviewList;

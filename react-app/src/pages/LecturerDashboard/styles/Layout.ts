@@ -6,26 +6,23 @@ export const Page = styled.div`
   overflow-y: auto;
   box-sizing: border-box;
   padding: 2rem 3rem;
- 
-  
 `;
-
-
 
 export const Grid = styled.div`
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(1, 1fr);
+  // display: grid;
+  // gap: 1rem;
+  // grid-template-columns: repeat(1, 1fr);
 
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  // @media (min-width: 1024px) {
+  //   grid-template-columns: repeat(3, 1fr);
+  // }
 
-    @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  //   @media (min-width: 768px) {
+  //   grid-template-columns: repeat(3, 1fr);
+  // }
+  display: flex;
+  flex-wrap: wrap;
 `;
-
 
 export const TutorOverviewGrid = styled.div`
   display: grid;
@@ -33,8 +30,7 @@ export const TutorOverviewGrid = styled.div`
   grid-template-columns: repeat(1, 1fr);
   justify-items: center;
 
-  
-   &:only-child {
+  &:only-child {
     justify-content: center;
   }
 
@@ -45,18 +41,14 @@ export const TutorOverviewGrid = styled.div`
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
-
- 
 `;
-
 
 export const TutList = styled.div`
   flex: 1;
   overflow-y: auto;
   padding-right: 1rem;
-  max-height: calc(100vh - 220px); 
- 
+  max-height: calc(100vh - 220px);
+
   /* Optional: Style scrollbar */
   &::-webkit-scrollbar {
     width: 8px;
@@ -65,12 +57,8 @@ export const TutList = styled.div`
   /* Optional: Add smooth scroll */
   scroll-behavior: smooth;
 
-  
-
   &::-webkit-scrollbar-thumb {
     background-color: rgba(100, 100, 100, 0.2);
     border-radius: 4px;
   }
 `;
-
-

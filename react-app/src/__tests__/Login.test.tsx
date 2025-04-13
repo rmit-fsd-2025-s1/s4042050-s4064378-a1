@@ -21,6 +21,7 @@ describe("Login Page", () => {
   const mockNavigateTo = jest.fn();
   const mockSetRegistrationSuccess = jest.fn();
 
+  // mock user for testing
   const mockUser = {
     email: "test.user@example.com",
     firstName: "Test",
@@ -29,6 +30,7 @@ describe("Login Page", () => {
     role: "lecturer",
   };
 
+  // Login page render
   const renderUI = (props: LoginPageProps) => {
     render(<LoginPage {...props} />);
   };

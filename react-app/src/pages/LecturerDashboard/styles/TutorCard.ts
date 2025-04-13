@@ -5,25 +5,24 @@ export const TutoCard = styled.div`
   padding: 1.45rem;
   border-radius: 0.85rem;
   background: rgb(94, 170, 245); /* light gray-blue background */
-  margin-bottom: 1.6rem;
+  margin: 10px;
   transition: box-shadow 0.3s ease;
   box-shadow: 0 3px 5px rgba(11, 2, 61, 0.06);
   width: 100%;
-  max-width: 480px;   
-  min-width: 360px;   
+  max-width: 480px;
+  min-width: 360px;
 
   &:hover {
     box-shadow: 0 5px 11px rgba(11, 2, 61, 0.06);
   }
 `;
 
-
 export const Name = styled.h2`
   text-align: center;
   margin-bottom: 1.5rem;
   font-weight: 700;
   font-size: 2.5rem;
-  color:rgb(9, 124, 239);
+  color: rgb(9, 124, 239);
 `;
 
 export const Form = styled.div`
@@ -33,7 +32,6 @@ export const Form = styled.div`
   gap: 1rem;
 `;
 
-
 export const Button = styled.button`
   margin-top: 0.85rem;
   color: white;
@@ -42,8 +40,6 @@ export const Button = styled.button`
   background-color: #2563eb;
   font-size: 0.985rem;
   border-radius: 0.4rem;
- 
-  
 
   &:hover {
     background-color: #1d4ed8;
@@ -72,9 +68,6 @@ export const CourseList = styled.ul`
     margin-bottom: 0;
   }
 `;
-
-
-
 
 export const FormGroup = styled.div`
   display: flex;
@@ -112,7 +105,7 @@ export const Textarea = styled.textarea`
 `;
 
 export const ErrorMessage = styled.p`
-  color:rgb(227, 4, 4);
+  color: rgb(227, 4, 4);
   font-size: 1rem;
   margin-top: 1rem;
 `;
@@ -120,45 +113,32 @@ export const ErrorMessage = styled.p`
 export const SuccessMessage = styled.p`
   font-size: 1rem;
   font-weight: 700;
-  color:rgb(5, 88, 86);
+  color: rgb(5, 88, 86);
   margin-top: 0.25rem;
 `;
 
-
 export const TutorDetails = styled.div`
- 
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
   margin-bottom: 1.6rem;
-  
-  
 `;
 
 export const Row = styled.div`
   display: flex;
   gap: 0.3rem;
   flex-wrap: wrap;
-  
 `;
 
 export const RowLabel = styled.span`
   font-weight: 700;
   font-size: 1.1rem;
-  color:rgb(17, 60, 154);
+  color: rgb(17, 60, 154);
 `;
 
 export const RowValue = styled.span`
-
   word-break: break-word;
   font-weight: 700;
-  color:rgb(4, 22, 49);
+  color: rgb(4, 22, 49);
   font-size: 1.1rem;
-  
 `;
-
-
-
-
-
-
