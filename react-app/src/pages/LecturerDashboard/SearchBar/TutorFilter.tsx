@@ -1,23 +1,25 @@
 import React from "react";
+import { Select } from "../styles/Shared";
 
 interface Props {
   value: string;
   onChange: (value: string) => void;
 }
 
-const SelectionFilter: React.FC<Props> = ({ value, onChange }) => {
+// Drop down to filter the user based on most selected, lease selected and not selected tutors
+const TutorFilter: React.FC<Props> = ({ value, onChange }) => {
   return (
-    <select
+    <Select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
     >
       <option value="all">All Selection States</option>
       <option value="most">Most Chosen Applicant</option>
       <option value="least">Least Chosen Applicant</option>
       <option value="unselected">Not Selected Applicants</option>
-    </select>
+    </Select>
+
   );
 };
 
-export default SelectionFilter;
+export default TutorFilter;

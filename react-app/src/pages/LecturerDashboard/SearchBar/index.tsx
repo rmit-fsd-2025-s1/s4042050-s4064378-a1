@@ -5,7 +5,7 @@ import { mockCourses } from "../../../mockData/mockData";
 import SearchBar from "./SearchBar";
 import SortByCourseOrAvailability from "./SortByCourseOrAvailability";
 import CourseBasedFilter from "./CourseBasedFilter";
-import SelectionFilter from "./SelectionFilter";
+import TutorFilter from "./TutorFilter";
 import { Filter } from "../styles/Filters";
 
 
@@ -146,7 +146,7 @@ const SearchSortBar: React.FC<Props> = ({
           disabled={["least", "most", "unselected"].includes(tutorSelectFilter)}
         />
 
-        <SelectionFilter value={tutorSelectFilter} onChange={setTutorSelectFilter} />
+        <TutorFilter value={tutorSelectFilter} onChange={setTutorSelectFilter} />
       </div>
     </Filter>
 
