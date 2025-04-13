@@ -9,17 +9,6 @@ export const Page = styled.div`
 `;
 
 export const Grid = styled.div`
-  // display: grid;
-  // gap: 1rem;
-  // grid-template-columns: repeat(1, 1fr);
-
-  // @media (min-width: 1024px) {
-  //   grid-template-columns: repeat(3, 1fr);
-  // }
-
-  //   @media (min-width: 768px) {
-  //   grid-template-columns: repeat(3, 1fr);
-  // }
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

@@ -3,14 +3,11 @@ import styled from "styled-components";
 export const TutoCard = styled.div`
   border: 2px solid #e5e7eb;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   background: rgb(222, 228, 235); /* light gray-blue background */
   margin: 10px;
   transition: box-shadow 0.3s ease;
   box-shadow: 0 3px 5px rgba(11, 2, 61, 0.06);
-  // width: 100%;
-  // max-width: 480px;
-  // min-width: 360px;
   width: 360px;
 
   &:hover {
