@@ -24,7 +24,6 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate, allTutors }) => {
 
     const duplicate = allTutors.find(
       (t) =>
-        t.id !== tutor.id &&
         t.appliedRole.courseId === tutor.course &&
         t.appliedRole.rank === rank &&
         t.appliedRole.status === "accepted"
