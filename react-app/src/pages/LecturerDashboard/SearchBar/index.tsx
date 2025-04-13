@@ -30,10 +30,23 @@ const SearchSortBar: React.FC<Props> = ({
   //Filter by course
   const [filterByCourse, setfilterByCourse] = useState("all");
 
+  const [searchError, setSearchError] = useState("");
+
 
   useEffect(() => {
     onViewModeChange(tutorSelectFilter);
     const searchQuery = userSearchQuery.toLowerCase().trim();
+    
+    // Validation added, Only string can be entered when Query tutor 
+    // based on name, course,skill availability
+    const isValidSearch = /^[a-zA-Z\s]*$/.test(searchQuery);
+    if (!isValidSearch) {
+      setSearchError("Search must only contain letters and spaces.");
+      onFilteredchangedList([]);
+      return;
+    } else {
+      setSearchError("");
+    }
 
     if (["unselected", "least", "most"].includes(tutorSelectFilter)) {
       //The most selected least selected and usnelected user ids are mapped 
@@ -130,6 +143,7 @@ const SearchSortBar: React.FC<Props> = ({
   // For each filter and sorting tasks different components are created and used here
   return (
     <Filter>
+      {searchError && <p style={{ color: "red", marginBottom: "0.5rem" }}>{searchError}</p>}
       <SearchBar value={userSearchQuery} onChange={setuserSearchQuery} />
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "space-between", width: "100%" }}>
