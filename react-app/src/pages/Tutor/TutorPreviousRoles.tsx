@@ -13,7 +13,7 @@ const PreviousRoles: React.FC<PreviousRolesProps> = ({ roles }) => {
 
   return (
     <div className="previous-roles">
-      <PreviousRolesHeading>Previous Roles</PreviousRolesHeading>
+      <PreviousRolesHeading>Applied Roles</PreviousRolesHeading>
 
       {roles.length === 0 ? (
         <p>You haven't had any previous roles.</p>
