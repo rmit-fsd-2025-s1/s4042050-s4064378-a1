@@ -4,9 +4,9 @@ import {SortOption} from "../../types/sortTypes"
 import {saveTutors} from "../../util/addTutors"
 import {loadTutors} from "../../util/localStorage"
 import TutorList from "./tutorList"
-import SearchSortBar from "./searchSortBar"
+import SearchSortBar from "./SearchBar/index"
 import "./styles/index.css"
-import { TutorApplication } from "./searchSortBar";
+import { TutorApplication } from "./SearchBar/index";
 import TutorOverviewList from "./TutorOverviewList"
 
 

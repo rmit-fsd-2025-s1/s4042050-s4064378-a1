@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Tutor, TutorRole } from "../../types/Tutor";
-import { SortOption } from "../../types/sortTypes";
-import { mockCourses } from "../../mockData/mockData";
-
-interface Props {
-  applicants: Tutor[];
-  onFilteredListChange: (filtered: TutorApplication[]) => void;
-  onViewModeChange: (viewMode: string) => void;
-}
+import { Tutor, TutorRole } from "../../../types/Tutor";
+import { SortOption } from "../../../types/sortTypes";
+import { mockCourses } from "../../../mockData/mockData";
+import SearchInput from "./SearchInput";
+import SortSelect from "./SortSelect";
+import CourseSelect from "./CourseSelect";
+import SelectionFilter from "./SelectionFilter";
 
 export interface TutorApplication extends Tutor {
   course: string;
   rank: number;
   status: "pending" | "accepted" | "rejected";
   appliedRole: TutorRole;
+}
+
+interface Props {
+  applicants: Tutor[];
+  onFilteredListChange: (filtered: TutorApplication[]) => void;
+  onViewModeChange: (viewMode: string) => void;
 }
 
 const SearchSortBar: React.FC<Props> = ({
@@ -27,11 +31,9 @@ const SearchSortBar: React.FC<Props> = ({
   const [selectionFilter, setSelectionFilter] = useState("all");
 
   useEffect(() => {
-    onViewModeChange(selectionFilter); // notify parent
-
+    onViewModeChange(selectionFilter);
     const search = searchQuery.toLowerCase().trim();
 
-    // Overview filters
     if (["most", "least", "unselected"].includes(selectionFilter)) {
       const selectionCountMap = new Map<string, number>();
       applicants.forEach((tutor) => {
@@ -64,7 +66,7 @@ const SearchSortBar: React.FC<Props> = ({
           return true;
         })
         .map((tutor) => {
-          const role = tutor.appliedRoles?.[0]; // pick the first applied role
+          const role = tutor.appliedRoles?.[0];
           return {
             ...tutor,
             course: role?.courseId ?? "",
@@ -78,16 +80,11 @@ const SearchSortBar: React.FC<Props> = ({
       return;
     }
 
-    // All mode: flatten all matching course applications
     const matched: TutorApplication[] = [];
-
     applicants.forEach((tutor) => {
       if (!tutor.appliedRoles?.length) return;
-
       tutor.appliedRoles.forEach((role) => {
-        const matchesCourse =
-          selectedCourseId === "all" || role.courseId === selectedCourseId;
-
+        const matchesCourse = selectedCourseId === "all" || role.courseId === selectedCourseId;
         const courseName = mockCourses.find((c) => c.id === role.courseId)?.name.toLowerCase() ?? "";
 
         const matchesSearch =
@@ -109,7 +106,6 @@ const SearchSortBar: React.FC<Props> = ({
       });
     });
 
-    // Sorting
     if (sortOption === "course" && selectedCourseId === "all") {
       matched.sort((a, b) => a.course.localeCompare(b.course));
     } else if (sortOption === "availability") {
@@ -121,50 +117,19 @@ const SearchSortBar: React.FC<Props> = ({
 
   return (
     <div className="search-sort-bar flex flex-col md:flex-row items-center justify-between gap-4 p-4 border-b border-gray-300 mb-6">
-
-      <input
-        type="text"
-        placeholder="Search by tutor name, course, availability, skills..."
-        onChange={(e) => setSearchQuery(e.target.value)}
-        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/3"
-      />
-
-      <select
-        onChange={(e) => setSortOption(e.target.value as SortOption)}
+      <SearchInput value={searchQuery} onChange={setSearchQuery} />
+      <SortSelect
         value={sortOption}
-        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
+        onChange={setSortOption}
         disabled={["most", "least", "unselected"].includes(selectionFilter)}
-      >
-        <option value="course" disabled={selectedCourseId !== "all"}>
-          Sort by Course
-        </option>
-        <option value="availability">Sort by Availability</option>
-      </select>
-
-      <select
+        selectedCourseId={selectedCourseId}
+      />
+      <CourseSelect
         value={selectedCourseId}
-        onChange={(e) => setSelectedCourseId(e.target.value)}
-        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
+        onChange={setSelectedCourseId}
         disabled={["most", "least", "unselected"].includes(selectionFilter)}
-      >
-        <option value="all">All Courses</option>
-        {mockCourses.map((course) => (
-          <option key={course.id} value={course.id}>
-            {course.name} ({course.code})
-          </option>
-        ))}
-      </select>
-
-      <select
-        value={selectionFilter}
-        onChange={(e) => setSelectionFilter(e.target.value)}
-        className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
-      >
-        <option value="all">All Selection States</option>
-        <option value="most">Most Chosen Applicant</option>
-        <option value="least">Least Chosen Applicant</option>
-        <option value="unselected">Not Selected Applicants</option>
-      </select>
+      />
+      <SelectionFilter value={selectionFilter} onChange={setSelectionFilter} />
     </div>
   );
 };
