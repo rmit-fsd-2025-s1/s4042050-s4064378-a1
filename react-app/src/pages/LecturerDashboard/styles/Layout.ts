@@ -22,6 +22,7 @@ export const Grid = styled.div`
   // }
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 `;
 
 export const TutorOverviewGrid = styled.div`
