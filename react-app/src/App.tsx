@@ -22,7 +22,6 @@ const TechTeam = () => {
 
   useEffect(() => {
     addMockDataToLocalStorage();
-    return () => localStorage.clear();
   }, []);
 
   const renderPage = () => {

@@ -126,7 +126,11 @@ const TutorDashboard = ({ currentUser }: { currentUser: User | null }) => {
 
       <main>
         {activeTab === "apply" && (
-          <TutorApplication courses={courses} onApply={handleApplyForRole} />
+          <TutorApplication
+            courses={courses}
+            onApply={handleApplyForRole}
+            tutorProfile={tutorProfile}
+          />
         )}
 
         {activeTab === "roles" && tutorProfile && (

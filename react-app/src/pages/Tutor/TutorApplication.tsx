@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Course } from "../../types/Tutor";
+import { Course, Tutor } from "../../types/Tutor";
 import {
   CoursesList,
   CurrentSemesterCourses,
@@ -14,11 +14,13 @@ import { ErrorMessage } from "../../components/ActivityStatus/ErrorMessage";
 interface TutorApplicationProps {
   courses: Course[];
   onApply: (courseId: string, role: "tutor" | "lab-assistant") => void;
+  tutorProfile: Tutor | null;
 }
 
 const TutorApplication: React.FC<TutorApplicationProps> = ({
   courses,
   onApply,
+  tutorProfile,
 }) => {
   const [selectedCourse, setSelectedCourse] = useState<string>("");
   const [selectedRole, setSelectedRole] = useState<"tutor" | "lab-assistant">(
@@ -61,7 +63,15 @@ const TutorApplication: React.FC<TutorApplicationProps> = ({
           >
             <option value="">Select a course</option>
             {courses.map((course) => (
-              <option key={course.id} value={course.id}>
+              <option
+                key={course.id}
+                value={course.id}
+                disabled={Boolean(
+                  tutorProfile?.appliedRoles?.find(
+                    (d) => d.courseId === course.id
+                  )
+                )}
+              >
                 {course.code} -{" "}
                 {course.name.charAt(0).toUpperCase() + course.name.slice(1)}
               </option>
