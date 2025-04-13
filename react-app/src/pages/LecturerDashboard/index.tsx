@@ -4,36 +4,32 @@ import { SortOption } from "../../types/sortTypes"
 import { loadTutors } from "../../util/localStorage"
 import TutorList from "./tutorList"
 import SearchSortBar from "./SearchBar/index"
-import "./styles/index.css"
 import TutorOverviewList from "./TutorOverviewList"
 import { PageWrapper, Title } from "./styles/Layout";
-import { DashboardHeader } from "./styles/Header";
 import { Dashboard } from "../../components/DashBoard";
 
 
+// This is the main component of lecture dashboard
 
 export const LecturerPage = ({navigateTo}:{navigateTo:(page: any) => void;}) => {
-  const [tutors, setTutors] = useState<Tutor[]>([])
   const [filteredTutors, setFilteredTutors] = useState<TutorApplication[]>([])
-  const [query, setQuery] = useState("")
-  const [sortOption, setSortOption] = useState<SortOption>("course");
+  const [tutors, setTutors] = useState<Tutor[]>([])
   const [viewMode, setViewMode] = useState("all");
 
   useEffect(() => {
-    //saveTutors(); // seeds mock data
     const data = loadTutors();
-    console.log("Loaded from localStorage:", data);
     setTutors(data);
   }, []);
 
   useEffect(() => {
-    console.log("📦 tutors state updated:", tutors);
   }, [tutors]);
 
-
+// There are tow views
+// 1. if the most selected, least selected and not selected filter is enabled, view on is rendered
+// 2. If above filter is not selected view 2 is rendered
   return (
     <PageWrapper>
-      <Dashboard header={"🎓 Lecturer Dashboard"} navigateTo={navigateTo} />
+      <Dashboard header={"Lecturer Dashboard"} navigateTo={navigateTo} />
       <SearchSortBar
         TutorApplicants={tutors}
         onFilteredchangedList={setFilteredTutors}
