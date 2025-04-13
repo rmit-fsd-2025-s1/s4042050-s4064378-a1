@@ -7,7 +7,7 @@ import { TutorDashboardWrapper } from "./element";
 import { mockCourses } from "../../mockData/mockData";
 import { Dashboard } from "../../components/DashBoard";
 import { User } from "../../types/User";
-import { getTutorByEmail } from "../../util/getTutorByEmail";
+import { getTutorByEmail } from "../../util/getTutor";
 import { addTutor } from "../../util/addTutor";
 import { updateTutor } from "../../util/updateTutor";
 import { Page } from "../../App";
