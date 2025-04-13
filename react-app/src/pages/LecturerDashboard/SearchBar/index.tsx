@@ -7,6 +7,7 @@ import SortByCourseOrAvailability from "./SortByCourseOrAvailability";
 import CourseBasedFilter from "./CourseBasedFilter";
 import TutorFilter from "./TutorFilter";
 import { Filter } from "../styles/Filters";
+import { useSelectionFilteredTutors } from "../../../hooks/useSelectionFilteredTutors";
 
 
 
@@ -15,6 +16,7 @@ interface Props {
   TutorApplicants: Tutor[];
   onViewModeChange: (viewMode: string) => void;
 }
+
 
 const SearchSortBar: React.FC<Props> = ({
   TutorApplicants,
@@ -33,6 +35,12 @@ const SearchSortBar: React.FC<Props> = ({
   const [searchError, setSearchError] = useState("");
 
 
+  const filteredBySelection = useSelectionFilteredTutors(
+    TutorApplicants,
+    tutorSelectFilter as "most" | "least" | "unselected"
+  );
+
+
   useEffect(() => {
     onViewModeChange(tutorSelectFilter);
     const searchQuery = userSearchQuery.toLowerCase().trim();
@@ -47,55 +55,15 @@ const SearchSortBar: React.FC<Props> = ({
     } else {
       setSearchError("");
     }
-
+    
+    // Hook is used to filer the applicants based on most selected, lease selected not selected
     if (["unselected", "least", "most"].includes(tutorSelectFilter)) {
-      //The most selected least selected and usnelected user ids are mapped 
-      const tutorSelectionMap = new Map<string, number>();
-      TutorApplicants.forEach((tutor) => {
-        const count = tutor.appliedRoles?.filter((r) => r.status === "accepted").length ?? 0;
-        tutorSelectionMap.set(tutor.id, count);
-      });
-
-      let mostSelectedTutorId = "";
-      let leastSelectedTutorId = "";
-      let maxCount = -1;
-      let minCount = Infinity;
-
-      tutorSelectionMap.forEach((c, id) => {
-        if (c > maxCount) {
-          maxCount = c;
-          mostSelectedTutorId = id;
-        }
-        if (c > 0 && c < minCount) {
-          minCount = c;
-          leastSelectedTutorId = id;
-        }
-      });
-
-      //Based on the filter selected tutors are assigned
-      const filtered: TutorApplication[] = TutorApplicants
-        .filter((t) => {
-          const count = tutorSelectionMap.get(t.id) ?? 0;
-          if (tutorSelectFilter === "most") return t.id === mostSelectedTutorId;
-          if (tutorSelectFilter === "least") return t.id === leastSelectedTutorId;
-          if (tutorSelectFilter === "unselected") return count === 0;
-          return true;
-        })
-        .map((t) => {
-          const role = t.appliedRoles?.[0];
-          return {
-            ...t,
-            rank: role?.rank ?? 0,
-            appliedRole: role!,
-            status: role?.status ?? "pending",
-            course: role?.courseId ?? "",
-
-          };
-        });
-
-      onFilteredchangedList(filtered);
+      onFilteredchangedList(filteredBySelection);
       return;
     }
+    
+      
+    
 
     // Filter the user based on selected courses
     // Query tutor based on name, course,skill availability
