@@ -32,7 +32,7 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate, allTutors }) => {
     setErrorMessage("");
     setSuccessStatus(false);
 
-                           /// Validations////////////
+   /// Validations////////////
 
     // When the tutor is updated the validation is checked
     // This validation checks if perticuler rank is assigned to a user before
@@ -44,6 +44,11 @@ const TutorCard: React.FC<Props> = ({ tutor, onUpdate, allTutors }) => {
     
     //When seting user stutus valdations have been added only to select acepted statusses
     // Invalid status are not shown Lecture
+    if (tutorStatus === "accepted" && (isNaN(tutorRank) || tutorRank <= 0)) {
+      setErrorMessage("Please enter a valid rank greater than 0.");
+      return;
+    }
+    
     if (tutorStatus === "accepted" && tutorRank > 0) {
       const tutors = loadTutors()
       const tutorsToFilter = flattenTutors(tutors)
