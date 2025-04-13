@@ -111,7 +111,7 @@ const TutorApplication: React.FC<TutorApplicationProps> = ({
       </form>
 
       <CurrentSemesterCourses>
-        <h3>Available Courses - Spring 2024</h3>
+        <h3>Available Courses</h3>
         <CoursesList>
           {courses.map((course) => (
             <li key={course.id}>

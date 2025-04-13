@@ -4,7 +4,7 @@ import { BaseButton } from "./BaseButton";
 export const PrimaryButtonWrapper = styled(BaseButton)`
   width: 100%;
   padding: 10px;
-  background-color: rgb(0, 94, 255);
+  background-color: #2980b9;
   color: white;
   border: none;
   border-radius: 4px;
@@ -14,5 +14,19 @@ export const PrimaryButtonWrapper = styled(BaseButton)`
 
   &:hover {
     background-color: rgb(38, 3, 118);
+  }
+`;
+
+export const LogoutButtonWrapper = styled(BaseButton)`
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e0e0e0;
   }
 `;

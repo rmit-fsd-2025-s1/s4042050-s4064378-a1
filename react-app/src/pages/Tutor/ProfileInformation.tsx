@@ -147,7 +147,7 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
           ))}
         </SkillList>
 
-        <AddSkillWrapper>
+        <FormGroupWrapper>
           <input
             type="text"
             value={newSkill}
@@ -157,7 +157,7 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
           <SubmitButton type="button" onClick={handleAddSkill}>
             Add
           </SubmitButton>
-        </AddSkillWrapper>
+        </FormGroupWrapper>
       </Section>
 
       <Section>

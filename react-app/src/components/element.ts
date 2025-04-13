@@ -8,6 +8,10 @@ export const DashboardWrapper = styled.div`
   margin-bottom: 20px;
   box-shadow: var(--box-shadow);
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   h1 {
     margin: 0;
     font-size: 24px;

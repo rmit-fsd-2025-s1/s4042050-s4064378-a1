@@ -30,7 +30,7 @@ export const LoginPage = ({
   registrationSuccess,
   setRegistrationSuccess,
 }: {
-  setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setCurrentUser: (user: User) => void;
   navigateTo: (page: any) => void;
   registrationSuccess?: boolean;
   setRegistrationSuccess?: React.Dispatch<

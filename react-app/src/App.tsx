@@ -6,19 +6,49 @@ import { RegisterPage } from "./pages/RegisterPage";
 import TutorDashboard from "./pages/Tutor/TutorDashboard";
 import { LecturerPage } from "./components/LecturerDashboard";
 import { addMockDataToLocalStorage } from "./util/addMockDataToLocalStorage";
+import {
+  getCurrentPage,
+  getCurrentUser,
+  setCurrentPageToLocalStorage,
+  setCurrentUserToLocalStorage,
+} from "./util/localStorage";
 
 export type Page = "login" | "register" | "tutor" | "lecturer";
 
 const TechTeam = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [currentPage, setCurrentPage] = useState<Page>("login");
+  const [currentPage, setCurrentPage] = useState<Page | null>(null);
   const [registrationSuccess, setRegistrationSuccess] = useState<
     boolean | undefined
   >(false);
 
   const navigateTo = (page: Page) => {
     setCurrentPage(page);
+    setCurrentPageToLocalStorage(page);
   };
+
+  const setUser = (user: User) => {
+    setCurrentUserToLocalStorage(user);
+    setCurrentUser(user);
+  };
+
+  useEffect(() => {
+    if (!currentUser) {
+      const user = getCurrentUser();
+
+      if (user) {
+        setCurrentUser(() => user);
+      }
+    }
+
+    console.log(currentPage, currentUser);
+    if (!currentPage) {
+      const page = getCurrentPage();
+      if (page) {
+        setCurrentPage(page);
+      }
+    }
+  }, [currentPage, currentUser]);
 
   useEffect(() => {
     addMockDataToLocalStorage();
@@ -29,12 +59,11 @@ const TechTeam = () => {
       case "login":
         return (
           <LoginPage
-            setCurrentUser={setCurrentUser}
+            setCurrentUser={setUser}
             navigateTo={navigateTo}
             registrationSuccess={registrationSuccess}
             setRegistrationSuccess={setRegistrationSuccess}
           />
-          // <LecturerPage />
         );
       case "register":
         return (
@@ -42,15 +71,22 @@ const TechTeam = () => {
             navigateTo={navigateTo}
             setRegistrationSuccess={setRegistrationSuccess}
           />
-          // <TutorDashboard />
-          // <CourseForm onSubmit={() => {}} />
         );
       case "tutor":
-        return <TutorDashboard currentUser={currentUser} />;
+        return (
+          <TutorDashboard currentUser={currentUser} navigateTo={navigateTo} />
+        );
       case "lecturer":
         return <LecturerPage />;
       default:
-        return <div>default page</div>;
+        return (
+          <LoginPage
+            setCurrentUser={setUser}
+            navigateTo={navigateTo}
+            registrationSuccess={registrationSuccess}
+            setRegistrationSuccess={setRegistrationSuccess}
+          />
+        );
     }
   };
 

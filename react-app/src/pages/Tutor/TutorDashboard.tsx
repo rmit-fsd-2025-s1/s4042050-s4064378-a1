@@ -11,8 +11,15 @@ import { User } from "../../types/User";
 import { getTutorByEmail } from "../../util/getTutorByEmail";
 import { addTutor } from "../../util/addTutor";
 import { updateTutor } from "../../util/updateTutor";
+import { Page } from "../../App";
 
-const TutorDashboard = ({ currentUser }: { currentUser: User | null }) => {
+const TutorDashboard = ({
+  currentUser,
+  navigateTo,
+}: {
+  currentUser: User | null;
+  navigateTo: (page: Page) => void;
+}) => {
   const [tutorProfile, setTutorProfile] = useState<Tutor | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [activeTab, setActiveTab] = useState<"apply" | "profile" | "roles">(
@@ -93,7 +100,7 @@ const TutorDashboard = ({ currentUser }: { currentUser: User | null }) => {
 
   return (
     <TutorDashboardWrapper>
-      <Dashboard header="Tutor Dashboard" />
+      <Dashboard header="Tutor Dashboard" navigateTo={navigateTo} />
 
       <nav>
         <ul>
@@ -118,7 +125,7 @@ const TutorDashboard = ({ currentUser }: { currentUser: User | null }) => {
               className={activeTab === "roles" ? "active" : ""}
               onClick={() => setActiveTab("roles")}
             >
-              Previous Roles
+              Applied Roles
             </button>
           </li>
         </ul>
