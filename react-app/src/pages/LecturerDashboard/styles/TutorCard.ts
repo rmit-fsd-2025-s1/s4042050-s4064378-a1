@@ -1,19 +1,22 @@
 import styled from "styled-components";
 
 export const TutoCard = styled.div`
-  
   border: 2px solid #e5e7eb;
   padding: 1.45rem;
   border-radius: 0.85rem;
-  background:rgb(94, 170, 245); /* light gray-blue background */
+  background: rgb(94, 170, 245); /* light gray-blue background */
   margin-bottom: 1.6rem;
   transition: box-shadow 0.3s ease;
   box-shadow: 0 3px 5px rgba(11, 2, 61, 0.06);
-  
+  width: 100%;
+  max-width: 480px;   
+  min-width: 360px;   
+
   &:hover {
     box-shadow: 0 5px 11px rgba(11, 2, 61, 0.06);
   }
 `;
+
 
 export const Name = styled.h2`
   text-align: center;
@@ -125,9 +128,10 @@ export const SuccessMessage = styled.p`
 export const TutorDetails = styled.div`
  
   display: flex;
+  gap: 0.5rem;
   flex-direction: column;
-  margin-bottom: 1.5rem;
-  gap: 0.45rem;
+  margin-bottom: 1.6rem;
+  
   
 `;
 

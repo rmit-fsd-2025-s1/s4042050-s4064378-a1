@@ -27,19 +27,29 @@ export const Grid = styled.div`
 `;
 
 
-export const OverviewGrid = styled.div`
+export const TutorOverviewGrid = styled.div`
   display: grid;
-  gap: 1.5rem;
+  gap: 1.6rem;
   grid-template-columns: repeat(1, 1fr);
+  justify-items: center;
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+  
+   &:only-child {
+    justify-content: center;
   }
 
   @media (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+
+ 
 `;
+
 
 export const TutList = styled.div`
   flex: 1;
