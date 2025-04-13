@@ -1,6 +1,8 @@
 import { User } from "../types/User";
 import { Tutor } from "../types/Tutor";
 
+//This is the hardcoded mock data
+// Some of the mock data were genrated using chaGPT
 export const mockUsers: User[] = [
   {
     email: "test@example.com",
@@ -37,13 +39,33 @@ export const mockUsers: User[] = [
     password: "123",
     role: "tutor",
   },
+  {
+    firstName: "Emily",
+    lastName: "Brown",
+    email: "emily.b@example.com",
+    password: "pass123",
+    role: "tutor",
+  },
+  {
+    firstName: "Michael",
+    lastName: "Lee",
+    email: "michael.lee@example.com",
+    password: "lee456",
+    role: "tutor",
+  },
+  {
+    firstName: "Sara",
+    lastName: "Ahmed",
+    email: "sara.ahmed@example.com",
+    password: "sara789",
+    role: "tutor",
+  },
 ];
 
 export const mockTutors: Tutor[] = [
   {
     ...mockUsers[1],
     id: "tutor-1",
-    // course: "COSC2758",
     skills: ["JavaScript", "React", "CSS"],
     availability: "full-time",
     credentials: [
@@ -57,7 +79,7 @@ export const mockTutors: Tutor[] = [
       {
         courseId: "1",
         role: "tutor",
-        status: "pending",
+        status: "accepted",
         rank: 0,
       },
     ],
@@ -65,7 +87,6 @@ export const mockTutors: Tutor[] = [
   {
     id: "tutor-2",
     ...mockUsers[2],
-    // course: "COSC2938",
     skills: ["TypeScript", "Node.js", "Express"],
     availability: "part-time",
     credentials: [
@@ -79,13 +100,13 @@ export const mockTutors: Tutor[] = [
       {
         courseId: "2",
         role: "tutor",
-        status: "pending",
+        status: "accepted",
         rank: 0,
       },
       {
         courseId: "1",
         role: "tutor",
-        status: "pending",
+        status: "accepted",
         rank: 0,
       },
     ],
@@ -93,7 +114,6 @@ export const mockTutors: Tutor[] = [
   {
     id: "tutor-3",
     ...mockUsers[3],
-    // course: "COSC2758",
     skills: ["Python", "Django"],
     availability: "full-time",
     credentials: [
@@ -112,6 +132,69 @@ export const mockTutors: Tutor[] = [
       },
       {
         courseId: "4",
+        role: "tutor",
+        status: "pending",
+        rank: 0,
+      },
+    ],
+  },
+  {
+    id: "tutor-4",
+    ...mockUsers[5],
+    skills: ["HTML", "CSS", "JavaScript"],
+    availability: "part-time",
+    credentials: [
+      {
+        degree: "BSc in Web Development",
+        institution: "Tech University",
+        year: 2020,
+      },
+    ],
+    appliedRoles: [
+      {
+        courseId: "1",
+        role: "tutor",
+        status: "pending",
+        rank: 0,
+      },
+    ],
+  },
+  {
+    id: "tutor-5",
+    ...mockUsers[6],
+    skills: ["Java", "Spring", "SQL"],
+    availability: "full-time",
+    credentials: [
+      {
+        degree: "BEng in Software Engineering",
+        institution: "Engineering College",
+        year: 2018,
+      },
+    ],
+    appliedRoles: [
+      {
+        courseId: "2",
+        role: "tutor",
+        status: "pending",
+        rank: 0,
+      },
+    ],
+  },
+  {
+    id: "tutor-6",
+    ...mockUsers[7],
+    skills: ["Python", "Pandas", "TensorFlow"],
+    availability: "part-time",
+    credentials: [
+      {
+        degree: "MSc in AI",
+        institution: "AI Research Institute",
+        year: 2022,
+      },
+    ],
+    appliedRoles: [
+      {
+        courseId: "3",
         role: "tutor",
         status: "pending",
         rank: 0,
