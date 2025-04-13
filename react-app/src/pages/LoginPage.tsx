@@ -24,6 +24,15 @@ import { ErrorMessage } from "../components/ActivityStatus/ErrorMessage";
 const REACT_APP_SITE_KEY = "6LfaTQErAAAAAM4oamNji2SSm2uVi3-gUk1ul29S";
 const SITE_SECRET = "6LfaTQErAAAAACODMgjJzjm-jubUGIz8S13k9m2H";
 
+/**
+ * Handles user login and displays registration success messages.
+ *
+ * @param setCurrentUser - Updates the current user state after login
+ * @param navigateTo - Function for page navigation
+ * @param registrationSuccess - Flag indicating if registration was successful (optional)
+ * @param setRegistrationSuccess - Function to reset registration success state (optional)
+ */
+
 export type LoginPageProps = {
   setCurrentUser: (user: User) => void;
   navigateTo: (page: any) => void;

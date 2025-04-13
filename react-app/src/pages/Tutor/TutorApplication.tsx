@@ -12,6 +12,14 @@ import {
 import { ErrorMessage } from "../../components/ActivityStatus/ErrorMessage";
 import { Popup } from "../../components/Popup";
 
+/**
+ * Displays available courses and allows tutors to apply for positions.
+ *
+ * @param courses - List of available courses to apply for
+ * @param onApply - Callback when applying to a course (returns course ID and role)
+ * @param tutorProfile - Current tutor's profile data (null if not loaded)
+ */
+
 interface TutorApplicationProps {
   courses: Course[];
   onApply: (courseId: string, role: "tutor" | "lab-assistant") => void;

@@ -15,7 +15,13 @@ import { Role } from "../types/User";
 import { Page } from "../App";
 import { ErrorMessage } from "../components/ActivityStatus/ErrorMessage";
 
-// Register Page Component
+/**
+ * Handles user registration and manages registration success state.
+ *
+ * @param navigateTo - Callback for navigating to other pages (e.g., login after successful registration)
+ * @param setRegistrationSuccess - Updates the registration success state (used to show success messages)
+ */
+
 export const RegisterPage = ({
   navigateTo,
   setRegistrationSuccess,

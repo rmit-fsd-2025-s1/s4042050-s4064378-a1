@@ -15,6 +15,20 @@ import {
 } from "./element";
 import { Popup } from "../../components/Popup";
 
+/**
+ * ProfileInformation - A component for displaying and editing tutor profile information.
+ *
+ * This component renders a tutor's profile details and provides functionality to update them.
+ * It handles the display logic while delegating the actual update operations to the parent component.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Tutor} props.profile - The tutor profile object containing all profile information
+ * @param {function} props.onUpdate - Callback function invoked when profile updates occur
+ * @returns {React.ReactElement} The profile information form component
+ *
+ */
+
 interface ProfileInformationProps {
   profile: Tutor;
   onUpdate: (updatedProfile: Partial<Tutor>) => void;
@@ -24,6 +38,7 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
   profile,
   onUpdate,
 }) => {
+  // tutor availability
   const [availability, setAvailability] = useState<"part-time" | "full-time">(
     profile.availability
   );
@@ -39,8 +54,11 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
 
+  // handle adding new skills
   const handleAddSkill = () => {
     if (newSkill.trim() === "") return;
+
+    // check old skills includes the new one if not add
     if (!skills.includes(newSkill.trim())) {
       const updatedSkills = [...skills, newSkill.trim()];
       setSkills(updatedSkills);
@@ -49,17 +67,19 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
 
       setPopupMessage("Skill Added Successfully!");
     }
+    // if skill exist inform with a pop up message
     setPopupMessage("Skill Already Exist!");
-
     setIsPopupOpen(true);
   };
 
+  // remove skills
   const handleRemoveSkill = (skillToRemove: string) => {
     const updatedSkills = skills.filter((skill) => skill !== skillToRemove);
     setSkills(updatedSkills);
     onUpdate({ skills: updatedSkills });
   };
 
+  // change availability
   const handleAvailabilityChange = (
     newAvailability: "part-time" | "full-time"
   ) => {
@@ -68,6 +88,7 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
   };
 
   const handleAddCredential = () => {
+    // check for empty inputs
     if (
       newCredential.degree.trim() !== "" &&
       newCredential.institution.trim() !== ""
@@ -78,6 +99,7 @@ const ProfileInformation: React.FC<ProfileInformationProps> = ({
         return; // Invalid year
       }
 
+      // updated credentials with old values
       const updatedCredentials = [
         ...profile.credentials,
         {

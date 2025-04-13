@@ -1,6 +1,5 @@
 import { Page } from "../App";
 import { setCurrentUserToLocalStorage } from "../util/localStorage";
-import { BaseButton } from "./Buttons/BaseButton";
 import { LogoutButton } from "./Buttons/LogoutButton";
 import { DashboardWrapper } from "./element";
 

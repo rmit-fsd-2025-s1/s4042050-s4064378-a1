@@ -12,6 +12,13 @@ import { addTutor } from "../../util/addTutor";
 import { updateTutor } from "../../util/updateTutor";
 import { Page } from "../../App";
 
+/**
+ * Dashboard view for tutors with navigation and user info.
+ *
+ * @param currentUser - Currently logged in user (null if not authenticated)
+ * @param navigateTo - Function to navigate between dashboard pages
+ */
+
 const TutorDashboard = ({
   currentUser,
   navigateTo,

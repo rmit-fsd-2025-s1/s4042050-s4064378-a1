@@ -33,6 +33,7 @@ const FormField: React.FC<FormFieldProps> = ({
 }) => {
   const [error, setError] = React.useState<string>("");
 
+  // Handle blur on select
   const handleBlur = () => {
     const validation = validateField(
       value.toString(),
@@ -79,7 +80,7 @@ const FormField: React.FC<FormFieldProps> = ({
         />
       )}
 
-      {error && <div className="field-error">{error}</div>}
+      {error && <div>{error}</div>}
     </div>
   );
 };

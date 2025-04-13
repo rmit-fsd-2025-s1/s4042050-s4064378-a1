@@ -4,6 +4,11 @@ import { Course, TutorRole } from "../../types/Tutor";
 import { PreviousRolesHeading, RolesTable } from "./element";
 import { getAllCourses } from "../../util/getAllCourses";
 
+/**
+ * Displays a tutor's previous teaching roles and positions.
+ *
+ * @param roles - Array of the tutor's previous roles and their details
+ */
 interface PreviousRolesProps {
   roles: TutorRole[];
 }
