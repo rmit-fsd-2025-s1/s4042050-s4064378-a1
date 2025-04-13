@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Tutor ,TutorApplication} from "../../types/Tutor";
 import { SortOption } from "../../types/sortTypes"
 import { loadTutors } from "../../util/localStorage"
-import TutorList from "./tutorList"
+import TutorList from "./TutorListcom"
 import SearchSortBar from "./SearchBar/index"
 import TutorOverviewList from "./TutorOverviewList"
-import { PageWrapper, Title } from "./styles/Layout";
+import { Page } from "./styles/Layout";
 import { Dashboard } from "../../components/DashBoard";
 
 
@@ -28,7 +28,7 @@ export const LecturerPage = ({navigateTo}:{navigateTo:(page: any) => void;}) => 
 // 1. if the most selected, least selected and not selected filter is enabled, view on is rendered
 // 2. If above filter is not selected view 2 is rendered
   return (
-    <PageWrapper>
+    <Page>
       <Dashboard header={"Lecturer Dashboard"} navigateTo={navigateTo} />
       <SearchSortBar
         TutorApplicants={tutors}
@@ -40,7 +40,7 @@ export const LecturerPage = ({navigateTo}:{navigateTo:(page: any) => void;}) => 
       ) : (
         <TutorList tutors={filteredTutors} />
       )}
-    </PageWrapper>
+    </Page>
   );
 
 };

@@ -1,19 +1,13 @@
 import styled from "styled-components";
 
-export const PageWrapper = styled.div`
+export const Page = styled.div`
   width: 100vw;
   height: 100vh;
-  padding: 2rem 3rem;
   overflow-y: auto;
   box-sizing: border-box;
-`;
-
-
-export const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: 600;
-  color: #1f2937;
-  margin-bottom: 1.5rem;
+  padding: 2rem 3rem;
+ 
+  
 `;
 
 

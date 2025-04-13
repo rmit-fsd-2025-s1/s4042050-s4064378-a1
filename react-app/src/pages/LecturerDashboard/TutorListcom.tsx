@@ -2,7 +2,7 @@ import React from "react";
 import TutorCard from "./tutorCard";
 import { Tutor, TutorRole } from "../../types/Tutor";
 import { loadTutors, saveTutors } from "../../util/localStorage";
-import { Grid , TutList} from "./styles/ListLayout";
+import { Grid , TutList} from "./styles/Layout";
 import { TutorApplication } from "../../types/Tutor"
 
 
