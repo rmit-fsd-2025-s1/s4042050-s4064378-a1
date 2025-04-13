@@ -1,5 +1,6 @@
 import React from "react";
 import { mockCourses } from "../../../mockData/mockData";
+import { Select } from "../styles/Shared";
 
 interface Props {
   value: string;
@@ -7,13 +8,13 @@ interface Props {
   disabled: boolean;
 }
 
-const CourseSelect: React.FC<Props> = ({ value, onChange, disabled }) => {
+const CourseBasedFilter: React.FC<Props> = ({ value, onChange, disabled }) => {
   return (
-    <select
+    <Select
       value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="border border-gray-300 rounded px-4 py-2 w-full md:w-1/4"
       disabled={disabled}
+      onChange={(e) => onChange(e.target.value)}
+     
     >
       <option value="all">All Courses</option>
       {mockCourses.map((course) => (
@@ -21,8 +22,9 @@ const CourseSelect: React.FC<Props> = ({ value, onChange, disabled }) => {
           {course.name} ({course.code})
         </option>
       ))}
-    </select>
+    </Select>
+
   );
 };
 
-export default CourseSelect;
+export default CourseBasedFilter;

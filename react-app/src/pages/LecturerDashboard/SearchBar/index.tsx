@@ -4,7 +4,7 @@ import { SortOption } from "../../../types/sortTypes";
 import { mockCourses } from "../../../mockData/mockData";
 import SearchBar from "./SearchBar";
 import SortByCourseOrAvailability from "./SortByCourseOrAvailability";
-import CourseSelect from "./CourseSelect";
+import CourseBasedFilter from "./CourseBasedFilter";
 import SelectionFilter from "./SelectionFilter";
 import { Filter } from "../styles/Filters";
 
@@ -29,7 +29,7 @@ const SearchSortBar: React.FC<Props> = ({
   const [userSearchQuery, setuserSearchQuery] = useState("");
   //Filter by course
   const [filterByCourse, setfilterByCourse] = useState("all");
-  
+
 
   useEffect(() => {
     onViewModeChange(tutorSelectFilter);
@@ -58,7 +58,7 @@ const SearchSortBar: React.FC<Props> = ({
           leastSelectedTutorId = id;
         }
       });
-      
+
       //Based on the filter selected tutors are assigned
       const filtered: TutorApplication[] = TutorApplicants
         .filter((t) => {
@@ -76,14 +76,14 @@ const SearchSortBar: React.FC<Props> = ({
             appliedRole: role!,
             status: role?.status ?? "pending",
             course: role?.courseId ?? "",
-            
+
           };
         });
 
-        onFilteredchangedList(filtered);
+      onFilteredchangedList(filtered);
       return;
     }
-    
+
     // Filter the user based on selected courses
     // Query tutor based on name, course,skill availability
     // Tutors who match both filter and query are selcted and stored in SelectedTutors
@@ -94,15 +94,15 @@ const SearchSortBar: React.FC<Props> = ({
       tutor.appliedRoles.forEach((role) => {
         const courseName = mockCourses.find((c) => c.id === role.courseId)?.name.toLowerCase() ?? "";
         const filteredTutorByCourse = filterByCourse === "all" || role.courseId === filterByCourse;
-       
-     //Tutors are quiried based on name, course,skill availability
+
+        //Tutors are quiried based on name, course,skill availability
         const quriedTutors =
-        searchQuery === "" ||
+          searchQuery === "" ||
           `${tutor.firstName} ${tutor.lastName}`.toLowerCase().includes(searchQuery) ||
           tutor.availability?.toLowerCase().includes(searchQuery) ||
           tutor.skills?.some((skill) => skill.toLowerCase().includes(searchQuery)) ||
           courseName.includes(searchQuery);
-      // If a tutor match both conditions inserted into SelectedTutors
+        // If a tutor match both conditions inserted into SelectedTutors
         if (filteredTutorByCourse && quriedTutors) {
           SelectedTutors.push({
             ...tutor,
@@ -110,12 +110,12 @@ const SearchSortBar: React.FC<Props> = ({
             appliedRole: role,
             course: role.courseId,
             status: role.status,
-           
+
           });
         }
       });
     });
-    
+
     // Sorting tutors based on course or availability.
     // Sorting by course is only enabled only if course filter is all
     if (sortByCourseAvailability === "course" && filterByCourse === "all") {
@@ -126,7 +126,7 @@ const SearchSortBar: React.FC<Props> = ({
 
     onFilteredchangedList(SelectedTutors);
   }, [userSearchQuery, sortByCourseAvailability, filterByCourse, tutorSelectFilter, TutorApplicants]);
-  
+
   // For each filter and sorting tasks different components are created and used here
   return (
     <Filter>
@@ -140,10 +140,10 @@ const SearchSortBar: React.FC<Props> = ({
           selectedCourseId={filterByCourse}
         />
 
-        <CourseSelect
+        <CourseBasedFilter
           value={filterByCourse}
           onChange={setfilterByCourse}
-          disabled={["most", "least", "unselected"].includes(tutorSelectFilter)}
+          disabled={["least", "most", "unselected"].includes(tutorSelectFilter)}
         />
 
         <SelectionFilter value={tutorSelectFilter} onChange={setTutorSelectFilter} />
