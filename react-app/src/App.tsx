@@ -4,7 +4,7 @@ import { User } from "./types/User";
 import { App } from "./elements";
 import { RegisterPage } from "./pages/RegisterPage";
 import TutorDashboard from "./pages/Tutor/TutorDashboard";
-import { LecturerPage } from "./components/LecturerDashboard";
+import { LecturerPage } from "./pages/LecturerDashboard";
 import { addMockDataToLocalStorage } from "./util/addMockDataToLocalStorage";
 import {
   getCurrentPage,
